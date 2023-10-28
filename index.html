@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Table with Submit and Print Buttons</title>
     <style>
@@ -17,11 +18,12 @@
 
         table {
             border-collapse: collapse;
-            margin-left: 15px;
+            margin-left: 25px;
             border: 2px solid crimson;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid black;
             padding: 5px;
         }
@@ -31,9 +33,26 @@
             text-align: center;
         }
 
-        input[type="submit"], input[type="button"] {
-            padding: 5px 10px;
+        input[type="submit"],
+        input[type="button"] {
+            padding: 5px 15px;
             margin-bottom: 10px;
+
+        }
+
+        input[type="submit"],
+        input[type="button"]:hover {
+            background-color: rgb(15, 153, 84);
+        }
+
+        input {
+            border: none;
+            text-align: center;
+            align-items: center;
+        }
+
+        input:hover {
+            border: none;
         }
 
         .input-items {
@@ -42,6 +61,7 @@
             display: flex;
             padding-top: 5px;
             padding-bottom: 5px;
+
         }
 
         @media print {
@@ -49,9 +69,19 @@
                 margin: 0;
             }
 
+            footer {
+                display: none;
+            }
+
+            input[type="submit"],
+            input[type="button"] {
+                display: none;
+            }
+
         }
     </style>
 </head>
+
 <body id="myTable">
     <header id="sec-abe3" class="site" data-animation-name="" data-animation-duration="0" data-animation-delay="0"
         data-animation-direction="">
@@ -59,11 +89,33 @@
             <!-- Logo on the left side -->
             <div class="logo">
                 <a href="#" class="logo-link">
-                    <img src="logo1.png" alt="" style="width: 100px;">
+                    <img src="logo1.png" alt="" style="width: 100px; padding-top:25px">
                 </a>
+
             </div>
-            <div style="margin: auto;">
-                <h1 style="text-align: center; font: size 1px;"><span style="color: crimson;">Star Agrotec Pvt. Ltd.</span> <br>Production Area Eluru, Season Rabi 2023- 2024</h1>
+            <div style="margin: auto; width: 1000px;">
+
+                <a href="#" class="logo-link">
+                    <img src="logo2.png" alt="" style="width: 100px; float:right">
+                </a>
+
+                <h1 style="text-align: center; font: size 1px; margin:0px;"><span style="color: crimson;">Star Agrotec
+                        Pvt. Ltd.</span> <br>Production Area Eluru, Season Rabi 2023- 2024</h1>
+                <div style="display: flex; margin:auto">
+                    <p>Organizer : <input type="text" placeholder="Organizer Name" name="Organizer Name"
+                            style="width: 130px; border: none;"></p>
+                    <p style="padding-left: 10px;">Variety : <input style="width: 40px; border: none;" type="text"
+                            placeholder="2220">
+                    </p>
+                    <p style="padding-left: 10px;">Village : <input style="
+                    width: 100px; border: none;
+                " type="text" placeholder="Galayagudem" name="Village"></p>
+
+                </div>
+                <div>
+                    <p style="margin: 0px; padding-bottom:12px">Area Incharge: <input type="text"
+                            placeholder="Nandu Yadav" name="Village" style="border: none; width:100px"></p>
+                </div>
             </div>
         </div>
     </header>
@@ -77,8 +129,8 @@
                     <th>M.Date</th>
                     <th>Packets</th>
                     <th>Std.Acres</th>
-                    <th>F.KG</th>
-                    <th>M.KG</th>
+                    <th>Female.KG</th>
+                    <th>Male.KG</th>
                     <th>1st Pass</th>
                     <th>2nd Pass</th>
                     <th>3rd pass</th>
@@ -90,138 +142,188 @@
                 <tr>
                     <td class="SNO">1</td>
                     <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1"></td>
-                   
+
                 </tr>
 
                 <tr>
                     <td class="SNO">2</td>
                     <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1"
+                            style="width: 80px; align-items:center;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;  align-items:center;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="address1"></td>
+                    <td><input type="text" name="remark1"></td>
+
                 </tr>
+
 
                 <tr>
                     <td class="SNO">3</td>
                     <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="address1"></td>
+                    <td><input type="text" name="remark1"></td>
+
                 </tr>
+
 
                 <tr>
                     <td class="SNO">4</td>
                     <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="address1"></td>
+                    <td><input type="text" name="remark1"></td>
+
                 </tr>
+
 
                 <tr>
                     <td class="SNO">5</td>
                     <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="address1"></td>
+                    <td><input type="text" name="remark1"></td>
+
                 </tr>
+
 
                 <tr>
                     <td class="SNO">6</td>
                     <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="address1"></td>
+                    <td><input type="text" name="remark1"></td>
+
                 </tr>
+
 
                 <tr>
                     <td class="SNO">7</td>
                     <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="address1"></td>
+                    <td><input type="text" name="remark1"></td>
+
                 </tr>
+
+
+                <tr>
+                    <td class="SNO">8</td>
+                    <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" name="remark1"></td>
+
+                </tr>
+
 
                 <tr>
                     <td class="SNO">9</td>
                     <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="address1"></td>
-                </tr>
+                    <td><input type="text" name="remark1"></td>
 
+                </tr>
                 <tr>
                     <td class="SNO">10</td>
                     <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 30px;"></td>
                     <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="address1"></td>
+                    <td><input type="text" name="remark1"></td>
+
                 </tr>
+                <tr>
+                    <td class="SNO"></td>
+                    <td><input type="text" name="studentName1"></td>
+                    <td><input type="text" placeholder="" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="Total" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" placeholder="" name="remark1" style="width: 30px;"></td>
+                    <td><input type="text" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" name="remark1" style="width: 80px;"></td>
+                    <td><input type="text" name="remark1"></td>
+
+                </tr>
+
+
+
 
                 <!-- Repeat for more rows -->
             </tbody>
@@ -229,17 +331,32 @@
         <div class="input-items">
             <input type="submit" value="Submit">
             <input type="button" value="Print" id="print">
+
         </div>
     </section>
 
     <script>
 
-   const pt=document.getElementById("print");
-pt.addEventListener("click", function(){
-           
-           print();
+        const pt = document.getElementById("print");
+        pt.addEventListener("click", function () {
+
+            print();
 
         })
     </script>
+    <footer>
+        <div style="
+        height: 50px;
+        text-align: center;
+        color: black;">
+            <h3 style="margin: 0px;">
+                <marquee behavior="" direction="">This is Computer Generated Sheet <SPan style="color: red;">**!
+                        Submission and refreshing page will cause enterd Data Will be Lost**</SPan><span
+                        style="color: green;">So Kindly Do Always Print </span></marquee>
+            </h3>
+
+        </div>
+    </footer>
 </body>
+
 </html>
