@@ -49,24 +49,6 @@
                 margin: 0;
             }
 
-            table {
-                page-break-inside: avoid;
-                border: 2px solid crimson; /* Add this line to set table border for print */
-            }
-
-            th, td {
-                border: 1px solid black;
-                /* Add this line to maintain borders on print */
-            }
-
-            th {
-                background-color: lightgray;
-            }
-
-            @page {
-                size: A4;
-                margin: 1cm;
-            }
         }
     </style>
 </head>
@@ -246,23 +228,18 @@
         </table>
         <div class="input-items">
             <input type="submit" value="Submit">
-            <input type="button" value="Print" onclick="printTable()">
+            <input type="button" value="Print" id="print">
         </div>
     </section>
 
     <script>
-        function printTable() {
-            var table = document.getElementById('myTable').cloneNode(true);
-            var inputs = table.querySelectorAll('input[type="text"]');
-            inputs.forEach(function(input) {
-                input.parentNode.textContent = input.value;
-            });
 
-            var win = window.open('', '', 'width=800,height=600');
-            win.document.write(table.outerHTML);
-            win.print();
-            win.close();
-        }
+   const pt=document.getElementById("print");
+pt.addEventListener("click", function(){
+           
+           print();
+
+        })
     </script>
 </body>
 </html>
