@@ -2,13 +2,14 @@
 <html>
 
 <head>
-    <title>Table with Submit and Print Buttons</title>
+    <title>Farmer Deatils Form</title>
     <style>
         body {
             display: block;
             margin: auto;
-            min-width: 1230px;
+            min-width: 1240px;
             margin-top: 20px;
+            font-family: 'Times New Roman', Times, serif;
 
         }
 
@@ -20,7 +21,7 @@
         table {
             border-collapse: collapse;
             margin-left: 25px;
-            border: 2px solid crimson;
+
         }
 
         th,
@@ -32,6 +33,11 @@
         .SNO {
             width: 15px;
             text-align: center;
+        }
+
+        tr {
+            height: 46px;
+            width: ;
         }
 
         input[type="submit"],
@@ -48,7 +54,7 @@
 
         input {
             border: none;
-
+            height: 25px;
             align-items: center;
         }
 
@@ -85,7 +91,12 @@
 
 <body id="myTable">
     <header id="sec-abe3" class="site" data-animation-name="" data-animation-duration="0" data-animation-delay="0"
-        data-animation-direction="">
+        data-animation-direction="" style="
+        display: flex;
+        padding-left: 109px;
+        
+        margin-left: 24px;
+    ">
         <div class="header-wrapper" style="display: flex;">
             <!-- Logo on the left side -->
             <div class="logo">
@@ -102,18 +113,22 @@
 
                 <h1 style="text-align: center; font: size 1px; margin:0px;"><span style="color: crimson;">Star Agrotec
                         Pvt. Ltd.</span> <br>Production Area Eluru, Season Rabi 2023- 2024</h1>
-                <div style="display: flex; margin:auto">
+                <div style="display: flex; margin:auto; width: 40rem; ">
                     <p>Organizer : <input type="text" placeholder="Organizer Name" name="Organizer Name"
                             style="width: 130px; border: none;"></p>
-                    <p style="padding-left: 10px;">Variety : <input style="width: 40px; border: none;" type="text"
+
+                    <p style="padding-left: 10px;">Village : <input style="
+                    width: 110px; border: none;
+                " type="text" placeholder="eg:Galayagudem" name="Village"></p>
+                    <p style="padding-left: 10px;">Variety : <input style="width: 50px; border: none;" type="text"
                             placeholder="2220">
                     </p>
-                    <p style="padding-left: 10px;">Village : <input style="
-                    width: 100px; border: none;
-                " type="text" placeholder="Galayagudem" name="Village"></p>
 
                 </div>
-                <div>
+                <div style="
+                width: 40rem;
+                padding-left: 128px;
+            ">
                     <p style="margin: 0px; padding-bottom:12px">Area Incharge: <input type="text"
                             placeholder="Nandu Yadav" name="Village" style="border: none; width:100px"></p>
                 </div>
@@ -144,204 +159,245 @@
                 <!-- Insert more rows here with input fields as needed -->
                 <tr>
                     <td class="SNO">1</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
                 <tr>
                     <td class="SNO">2</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1"
-                            style="width: 80px; align-items:center;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;  align-items:center;">
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
                     </td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
 
+                <tr>
+                    <td class="SNO">2</td>
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
+                </tr>
 
                 <tr>
                     <td class="SNO">3</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
-
-
                 <tr>
                     <td class="SNO">4</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
-
-
                 <tr>
                     <td class="SNO">5</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
-
-
                 <tr>
                     <td class="SNO">6</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
-
-
                 <tr>
                     <td class="SNO">7</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
-
-
                 <tr>
                     <td class="SNO">8</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
-
-
                 <tr>
                     <td class="SNO">9</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
                 <tr>
                     <td class="SNO">10</td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="01-01-1999" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="0.25" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="0.45" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="4kg" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="01-01-1999" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="0.25" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="0.45" name="Std Acres" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Female KG" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="4kg" name="Male Kg" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
                 <tr>
                     <td class="SNO"></td>
-                    <td><input type="text" name="studentName1"></td>
-                    <td><input type="text" placeholder="" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="Total" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" placeholder="" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" placeholder="" name="remark1" style="width: 30px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1" style="width: 80px;"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
-                    <td><input type="text" name="remark1"></td>
+                    <td><input type="text" name="Farmer Name"></td>
+                    <td><input type="text" placeholder="" name="Female date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="Toat" name="Male Date" style="width: 80px;"></td>
+                    <td><input type="text" placeholder="eg:2.5" name="Packets" style="width: 30px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" placeholder="eg:4.5" name="Std Acres"
+                            style="width: 30px; margin-left: 20px;"></td>
+                    <td><input type="text" placeholder="eg:40kg" name="Female KG"
+                            style="width: 30px; margin-left: 20px;"></td>
+                    <td><input type="text" placeholder="eg:40kg" name="Male Kg" style="width: 40px; margin-left: 20px;">
+                    </td>
+                    <td><input type="text" name="District" style="width: 90px;"></td>
+                    <td><input type="text" name="Mandal" style="width: 90px;"></td>
+                    <td><input type="text" name="1St Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="2nd Pass" style="width: 80px;"></td>
+                    <td><input type="text" name="3rd Padd" style="width: 80px;"></td>
+                    <td><input type="text" name="Remark" style="width: 100px;"></td>
                 </tr>
                 <!-- Repeat for more rows -->
             </tbody>
