@@ -1,0 +1,165 @@
+/* 🔹 General Body Styling */
+body {
+    display: block;
+    margin: auto;
+    min-width: 1240px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* 🔹 Logo & Header */
+.logo {
+    padding-left: 15px;
+}
+
+.header-wrapper {
+    display: flex;
+    padding-left: 0px;
+    width: -webkit-fill-available;
+    margin: auto;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.header-info {
+    width: min-content;
+}
+
+.header-info h1 {
+    text-align: center;
+}
+
+/* 🔹 Organizer & Area Information */
+.organizer-info,
+.area-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.organizer-info label,
+.area-info label {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 10px 0;
+    align-items: center;
+}
+
+/* 🔹 Table Styling */
+table {
+    border-collapse: collapse;
+    margin: 10px auto;
+    table-layout: auto; /* Allow columns to adjust based on content */
+    width: 100%;
+    max-width: 1240px; /* Prevent table from becoming too wide */
+}
+
+/* 🔹 Table Headers & Cells */
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center; /* Align text center */
+    vertical-align: middle;
+}
+
+/* 🔹 Auto-Adjust Column Width Based on Content */
+th:nth-child(1), td:nth-child(1) { min-width: 50px; }  /* S.No */
+th:nth-child(2), td:nth-child(2) { min-width: 150px; } /* Farmer Name */
+th:nth-child(3), td:nth-child(3) { min-width: 100px; } /* F.Date */
+th:nth-child(4), td:nth-child(4) { min-width: 100px; } /* M.Date */
+th:nth-child(5), td:nth-child(5) { min-width: 80px; }  /* Packets */
+th:nth-child(6), td:nth-child(6) { min-width: 80px; }  /* Std Acres */
+th:nth-child(7), td:nth-child(7) { min-width: 80px; }  /* Female KG */
+th:nth-child(8), td:nth-child(8) { min-width: 80px; }  /* Male KG */
+th:nth-child(9), td:nth-child(9) { min-width: 120px; } /* Phone Number */
+th:nth-child(10), td:nth-child(10) { min-width: 150px; } /* Remark */
+
+/* 🔹 Ensure Table Adapts Properly */
+table input {
+    width: 100%;
+    min-width: 50px; /* Prevents input from collapsing */
+}
+
+/* 🔹 Table Row Height */
+tr {
+    height: 46px;
+    width: auto;
+}
+
+/* 🔹 Input Fields */
+input {
+    border: none;
+    height: 25px;
+    text-align: left;
+}
+
+/* 🔹 Buttons Styling */
+input[type="submit"],
+input[type="button"] {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    background-color: #555555;
+    color: white;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: rgb(15, 153, 84);
+}
+
+/* 🔹 Button Container */
+.input-items {
+    margin: auto;
+    width: max-content;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* 🔹 Print View Adjustments */
+@media print {
+    /* Remove unnecessary margins */
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hide Buttons & Unwanted Elements */
+    input[type="submit"],
+    input[type="button"],
+    .input-items {
+        display: none !important;
+    }
+
+    /* Hide Header and Footer */
+    .header-wrapper, .logo, footer {
+        display: none !important;
+    }
+
+    /* Make Table Fit Print Page */
+    table {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-collapse: collapse;
+    }
+
+    /* Ensure Table Doesn't Break Across Pages */
+    table, thead, tbody, tr, th, td {
+        page-break-inside: avoid !important;
+    }
+
+    /* Adjust Font Size for Printing */
+    th, td {
+        font-size: 14px;
+        word-wrap: break-word; /* Allow text wrapping if needed */
+        white-space: normal; /* Wrap long text */
+    }
+}
