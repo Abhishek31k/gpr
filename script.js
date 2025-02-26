@@ -49,7 +49,7 @@ function extractTableData() {
   for (let i = 0; i < rows.length; i++) {
     const cells = rows[i].getElementsByTagName("td");
     const rowData = {
-      sno: cells[0].textContent.trim() || "",
+      sno: parseInt(cells[0].textContent.trim()) || i + 1,
       farmerName: cells[1].querySelector("input").value.trim() || "",
       fDate: cells[2].querySelector("input").value.trim() || "",
       mDate: cells[3].querySelector("input").value.trim() || "",
@@ -131,21 +131,31 @@ async function saveData() {
   try {
     if (editingDocId) {
       // 🔹 Update existing document
-      await updateDoc(doc(db, "pdfLogs", editingDocId), {
-        organizer,
-        village,
-        variety,
-        areaIncharge,
-        district,
-        mandal,
-        tableData,
-        pdfBase64,
-        timestamp: new Date().toISOString(),
-      });
-      alert("✅ Table Updated Successfully!");
+      const docRef = doc(db, "pdfLogs", editingDocId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        await updateDoc(docRef, {
+          organizer,
+          village,
+          variety,
+          areaIncharge,
+          district,
+          mandal,
+          tableData,
+          pdfBase64,
+          timestamp: new Date().toISOString(),
+        });
+        alert("✅ Table Updated Successfully!");
+      } else {
+        alert(
+          "⚠️ Error: This document no longer exists. It may have been deleted."
+        );
+        editingDocId = null; // Reset edit mode
+      }
     } else {
       // 🔹 Save new document
-      await addDoc(collection(db, "pdfLogs"), {
+      const newDocRef = await addDoc(collection(db, "pdfLogs"), {
         organizer,
         village,
         variety,
@@ -156,6 +166,7 @@ async function saveData() {
         pdfBase64,
         timestamp: new Date().toISOString(),
       });
+      editingDocId = newDocRef.id; // ✅ Assign the new document ID
       alert("✅ New Table Saved Successfully!");
     }
 
@@ -165,6 +176,7 @@ async function saveData() {
     console.error("❌ Error saving data: ", error);
   }
 }
+
 // 🔹 Function to Load Saved PDFs from Firestore
 async function loadSavedPdfs() {
   const savedPdfsContainer = document.getElementById("savedPdfs");
@@ -242,10 +254,17 @@ async function editTable(docId) {
 
           cellOrder.forEach((key, index) => {
             const cell = newRow.insertCell(index);
-            const input = document.createElement("input");
-            input.type = "text";
-            input.value = row[key] || "";
-            cell.appendChild(input);
+
+            if (key === "sno") {
+              cell.textContent = row[key] || table.rows.length; // Ensure S.No is a number
+            } else {
+              const input = document.createElement("input");
+              input.type = "text";
+              input.name = key; // Assigns meaningful names
+              input.id = `row${table.rows.length}-col${key}`;
+              input.value = row[key] || "";
+              cell.appendChild(input);
+            }
           });
         });
       } else {
@@ -292,6 +311,8 @@ function addNewRow() {
     } else {
       const input = document.createElement("input");
       input.type = "text";
+      input.name = `column${i}`; // Adds a unique name
+      input.id = `row${rowCount}-col${i}`; // Adds a unique id
       cell.appendChild(input);
     }
   }
