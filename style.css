@@ -51,35 +51,90 @@ body {
 table {
     border-collapse: collapse;
     margin: 10px auto;
-    table-layout: auto; /* Allow columns to adjust based on content */
+    table-layout: auto;
+    /* Allow columns to adjust based on content */
     width: 100%;
-    max-width: 1240px; /* Prevent table from becoming too wide */
+    max-width: 1240px;
+    /* Prevent table from becoming too wide */
 }
 
 /* 🔹 Table Headers & Cells */
-th, td {
+th,
+td {
     border: 1px solid black;
     padding: 5px;
-    text-align: center; /* Align text center */
+    text-align: center;
+    /* Align text center */
     vertical-align: middle;
 }
 
 /* 🔹 Auto-Adjust Column Width Based on Content */
-th:nth-child(1), td:nth-child(1) { min-width: 50px; }  /* S.No */
-th:nth-child(2), td:nth-child(2) { min-width: 150px; } /* Farmer Name */
-th:nth-child(3), td:nth-child(3) { min-width: 100px; } /* F.Date */
-th:nth-child(4), td:nth-child(4) { min-width: 100px; } /* M.Date */
-th:nth-child(5), td:nth-child(5) { min-width: 80px; }  /* Packets */
-th:nth-child(6), td:nth-child(6) { min-width: 80px; }  /* Std Acres */
-th:nth-child(7), td:nth-child(7) { min-width: 80px; }  /* Female KG */
-th:nth-child(8), td:nth-child(8) { min-width: 80px; }  /* Male KG */
-th:nth-child(9), td:nth-child(9) { min-width: 120px; } /* Phone Number */
-th:nth-child(10), td:nth-child(10) { min-width: 150px; } /* Remark */
+th:nth-child(1),
+td:nth-child(1) {
+    min-width: 50px;
+}
+
+/* S.No */
+th:nth-child(2),
+td:nth-child(2) {
+    min-width: 150px;
+}
+
+/* Farmer Name */
+th:nth-child(3),
+td:nth-child(3) {
+    min-width: 100px;
+}
+
+/* F.Date */
+th:nth-child(4),
+td:nth-child(4) {
+    min-width: 100px;
+}
+
+/* M.Date */
+th:nth-child(5),
+td:nth-child(5) {
+    min-width: 80px;
+}
+
+/* Packets */
+th:nth-child(6),
+td:nth-child(6) {
+    min-width: 80px;
+}
+
+/* Std Acres */
+th:nth-child(7),
+td:nth-child(7) {
+    min-width: 80px;
+}
+
+/* Female KG */
+th:nth-child(8),
+td:nth-child(8) {
+    min-width: 80px;
+}
+
+/* Male KG */
+th:nth-child(9),
+td:nth-child(9) {
+    min-width: 120px;
+}
+
+/* Phone Number */
+th:nth-child(10),
+td:nth-child(10) {
+    min-width: 150px;
+}
+
+/* Remark */
 
 /* 🔹 Ensure Table Adapts Properly */
 table input {
     width: 100%;
-    min-width: 50px; /* Prevents input from collapsing */
+    min-width: 50px;
+    /* Prevents input from collapsing */
 }
 
 /* 🔹 Table Row Height */
@@ -125,6 +180,7 @@ input[type="button"]:hover {
 
 /* 🔹 Print View Adjustments */
 @media print {
+
     /* Remove unnecessary margins */
     body {
         margin: 0;
@@ -139,7 +195,9 @@ input[type="button"]:hover {
     }
 
     /* Hide Header and Footer */
-    .header-wrapper, .logo, footer {
+    .header-wrapper,
+    .logo,
+    footer {
         display: none !important;
     }
 
@@ -152,14 +210,22 @@ input[type="button"]:hover {
     }
 
     /* Ensure Table Doesn't Break Across Pages */
-    table, thead, tbody, tr, th, td {
+    table,
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
         page-break-inside: avoid !important;
     }
 
     /* Adjust Font Size for Printing */
-    th, td {
+    th,
+    td {
         font-size: 14px;
-        word-wrap: break-word; /* Allow text wrapping if needed */
-        white-space: normal; /* Wrap long text */
+        word-wrap: break-word;
+        /* Allow text wrapping if needed */
+        white-space: normal;
+        /* Wrap long text */
     }
 }
