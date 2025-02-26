@@ -16,7 +16,7 @@ import {
 
 // 🔹 Firebase Configuration
 const firebaseConfig = {
-  apiKey: API_KI,
+  apiKey:"AIzaSyCwbnY2EVuQpg87WVmS3fEQ749wiREmXjk",
   authDomain: "gpr-data-table.firebaseapp.com",
   projectId: "gpr-data-table",
   storageBucket: "gpr-data-table.appspot.com",
