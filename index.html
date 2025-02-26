@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body id="myTable">
-    <header id="sec-abe3" class="site">
+<body>
+    <header class="site">
         <div class="header-wrapper">
             <div class="logo">
                 <a href="#" class="logo-link">
@@ -32,11 +32,9 @@
                     <label>Mandal: <input type="text" id="mandal"></label><br>
                 </div>
             </div>
-            <a href="#" class="logo-link">
-                <img src="trade-3.png" alt="Trade" style="width: 100px; float:right">
-            </a>
         </div>
     </header>
+
     <section>
         <form>
             <table id="myTable">
@@ -57,72 +55,22 @@
                 <tbody>
                     <tr>
                         <td class="SNO">1</td>
-                        <td><input type="text" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date"></td>
-                        <td><input type="text" name="Male Date"></td>
-                        <td><input type="text" name="Packets"></td>
-                        <td><input type="text" name="Std Acres"></td>
-                        <td><input type="text" name="Female KG"></td>
-                        <td><input type="text" name="Male KG"></td>
-                        <td><input type="text" name="Phone Number"></td>
-                        <td><input type="text" name="Remark"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text"></td>
                     </tr>
-                    <tr>
-                        <td class="SNO">2</td>
-                        <td><input type="text" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date"></td>
-                        <td><input type="text" name="Male Date"></td>
-                        <td><input type="text" name="Packets"></td>
-                        <td><input type="text" name="Std Acres"></td>
-                        <td><input type="text" name="Female KG"></td>
-                        <td><input type="text" name="Male KG"></td>
-                        <td><input type="text" name="Phone Number"></td>
-                        <td><input type="text" name="Remark"></td>
-                    </tr>
-                    <tr>
-                        <td class="SNO">3</td>
-                        <td><input type="text" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date"></td>
-                        <td><input type="text" name="Male Date"></td>
-                        <td><input type="text" name="Packets"></td>
-                        <td><input type="text" name="Std Acres"></td>
-                        <td><input type="text" name="Female KG"></td>
-                        <td><input type="text" name="Male KG"></td>
-                        <td><input type="text" name="Phone Number"></td>
-                        <td><input type="text" name="Remark"></td>
-                    </tr>
-                    <tr>
-                        <td class="SNO">4</td>
-                        <td><input type="text" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date"></td>
-                        <td><input type="text" name="Male Date"></td>
-                        <td><input type="text" name="Packets"></td>
-                        <td><input type="text" name="Std Acres"></td>
-                        <td><input type="text" name="Female KG"></td>
-                        <td><input type="text" name="Male KG"></td>
-                        <td><input type="text" name="Phone Number"></td>
-                        <td><input type="text" name="Remark"></td>
-                    </tr>
-                    <tr>
-                        <td class="SNO">5</td>
-                        <td><input type="text" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date"></td>
-                        <td><input type="text" name="Male Date"></td>
-                        <td><input type="text" name="Packets"></td>
-                        <td><input type="text" name="Std Acres"></td>
-                        <td><input type="text" name="Female KG"></td>
-                        <td><input type="text" name="Male KG"></td>
-                        <td><input type="text" name="Phone Number"></td>
-                        <td><input type="text" name="Remark"></td>
-                    </tr>
-                   
                 </tbody>
             </table>
             <div class="input-items">
                 <input type="button" value="Save" id="saveData">
                 <input type="button" value="Print" id="print">
                 <input type="button" value="Add Row" id="addRow">
-
             </div>
         </form>
     </section>
@@ -130,13 +78,16 @@
     <footer>
         <div>
             <h3>
-                <marquee>This is a Computer Generated Sheet <span style="color: red;">**! Submission and refreshing page
-                        will cause entered Data Will be Lost**</span><span style="color: green;">So Kindly Do Always
-                        Print</span></marquee>
+                <marquee>This is a Computer Generated Sheet. Always Save!</marquee>
             </h3>
         </div>
     </footer>
+
+    <div id="savedPdfs" style="margin: 20px; padding: 10px; border-top: 1px solid #ccc;"></div>
+
     <script type="module" src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
 </body>
 
 </html>
