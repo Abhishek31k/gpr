@@ -1,143 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Farmer Deatils Form</title>
-    <style>
-        body {
-            display: block;
-            margin: auto;
-            min-width: 1240px;
-            margin-top: 20px;
-            font-family: 'Times New Roman', Times, serif;
-
-        }
-
-        .logo {
-            padding-left: 15px;
-        }
-
-
-        table {
-            border-collapse: collapse;
-            margin-left: 25px;
-
-        }
-
-        th,
-        td {
-            border: 1px solid black;
-            padding: 5px;
-        }
-
-        .SNO {
-            width: 15px;
-            text-align: center;
-        }
-
-        tr {
-            height: 46px;
-            width:auto ;
-        }
-
-        input[type="submit"],
-        input[type="button"] {
-            padding: 5px 15px;
-            margin-bottom: 10px;
-
-        }
-
-        input[type="submit"],
-        input[type="button"]:hover {
-            background-color: rgb(15, 153, 84);
-        }
-
-        input {
-            border: none;
-            height: 25px;
-            align-items: center;
-        }
-
-        input:hover {
-            border: none;
-        }
-
-        .input-items {
-            margin: auto;
-            width: 10%;
-            display: flex;
-            padding-top: 5px;
-            padding-bottom: 5px;
-
-        }
-
-        @media print {
-            body {
-                margin: 0;
-            }
-
-            footer {
-                display: none;
-            }
-
-
-            input[type="submit"],
-            input[type="button"] {
-                display: none;
-            }
-
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Details Form</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body id="myTable">
-    <header id="sec-abe3" class="site" data-animation-name="" data-animation-duration="0" data-animation-delay="0"
-        data-animation-direction="" style="
-        display: flex;
-        padding-left: 0px;
-        width:65.6rem;
-        margin-left: 65px;
-    ">
-        <div class="header-wrapper" style="display: flex;">
-            <!-- Logo on the left side -->
+    <header id="sec-abe3" class="site">
+        <div class="header-wrapper">
             <div class="logo">
                 <a href="#" class="logo-link">
-                    <img src="logo1.png" alt="" style="width: 119px;padding-top: 25px;">
+                    <img src="logo1.png" alt="Logo" style="width: 119px;padding-top: 25px;">
                 </a>
-
             </div>
-            <div style="margin: auto;width: 913px;">
-
-                <a href="#" class="logo-link">
-                    <img src="trade-3.png" alt="" style="width: 100px; float:right">
-                </a>
-
-                <h1 style="text-align: center; font: size 1px; margin:0px;"><span style="color: crimson;">Star Agro
-                        tech Pvt Ltd®</span> <br>Production Area Eluru, Season Rabi 2023- 2024</h1>
-                <div style="display: flex; margin:auto; width: 40rem; justify-content:space-between; ">
-                    <p>Organizer : <input type="text" name="Organizer Nam" style="width: 130px; border: none;"></p>
-
-                    <p style="padding-left: 10px;">Village : <input style="
-                    width: 110px; border: none;
-                " type="text" name="Village"></p>
-                    <p style="padding-left: 10px;">Variety : <input style="width: 80px; border: none;" type="text">
-                    </p>
-
+            <div class="header-info">
+                <h1>
+                    <span style="color: crimson;">Star Agro tech Pvt Ltd®</span><br>
+                    Production Area Eluru, Season Rabi 2023- 2024
+                </h1>
+                <div class="organizer-info">
+                    <label>Organizer: <input type="text" id="organizer"></label><br>
+                    <label>Village: <input type="text" id="village"></label><br>
+                    <label>Variety: <input type="text" id="variety"></label><br>
                 </div>
-                <div style="
-                width: 40rem;
-                padding-left: 85px;
-                display: flex;
-                    justify-content:space-between;
-            ">
-                    <p style="margin: 0px; padding-bottom:12px">Area Incharge: <input type="text" name="Village"
-                            style="border: none; width:100px"></p>
-                    <p style="margin: 0px; padding-bottom:12px">District: <input type="text" name="District"
-                            style="border: none; width:100px"></p>
-                    <p style="margin: 0px; padding-bottom:12px">Mandal: <input type="text" name="Mandal"
-                            style="border: none; width:100px"></p>
+                <div class="area-info">
+                    <label>Area Incharge: <input type="text" id="areaIncharge"></label><br>
+                    <label>District: <input type="text" id="district"></label><br>
+                    <label>Mandal: <input type="text" id="mandal"></label><br>
                 </div>
             </div>
+            <a href="#" class="logo-link">
+                <img src="trade-3.png" alt="Trade" style="width: 100px; float:right">
+            </a>
         </div>
     </header>
     <section>
@@ -153,212 +50,93 @@
                         <th>Std Acres</th>
                         <th>Female KG</th>
                         <th>Male KG</th>
-
-
                         <th>Phone Number</th>
-
                         <th>Remark</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Insert more rows here with input fields as needed -->
                     <tr>
                         <td class="SNO">1</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 90px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
+                        <td><input type="text" name="Farmer Name"></td>
+                        <td><input type="text" name="Female date"></td>
+                        <td><input type="text" name="Male Date"></td>
+                        <td><input type="text" name="Packets"></td>
+                        <td><input type="text" name="Std Acres"></td>
+                        <td><input type="text" name="Female KG"></td>
+                        <td><input type="text" name="Male KG"></td>
+                        <td><input type="text" name="Phone Number"></td>
+                        <td><input type="text" name="Remark"></td>
                     </tr>
-                   <tr>
+                    <tr>
                         <td class="SNO">2</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 120px;"></td>
+                        <td><input type="text" name="Farmer Name"></td>
+                        <td><input type="text" name="Female date"></td>
+                        <td><input type="text" name="Male Date"></td>
+                        <td><input type="text" name="Packets"></td>
+                        <td><input type="text" name="Std Acres"></td>
+                        <td><input type="text" name="Female KG"></td>
+                        <td><input type="text" name="Male KG"></td>
+                        <td><input type="text" name="Phone Number"></td>
+                        <td><input type="text" name="Remark"></td>
                     </tr>
-
                     <tr>
                         <td class="SNO">3</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
+                        <td><input type="text" name="Farmer Name"></td>
+                        <td><input type="text" name="Female date"></td>
+                        <td><input type="text" name="Male Date"></td>
+                        <td><input type="text" name="Packets"></td>
+                        <td><input type="text" name="Std Acres"></td>
+                        <td><input type="text" name="Female KG"></td>
+                        <td><input type="text" name="Male KG"></td>
+                        <td><input type="text" name="Phone Number"></td>
+                        <td><input type="text" name="Remark"></td>
                     </tr>
-
                     <tr>
                         <td class="SNO">4</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
+                        <td><input type="text" name="Farmer Name"></td>
+                        <td><input type="text" name="Female date"></td>
+                        <td><input type="text" name="Male Date"></td>
+                        <td><input type="text" name="Packets"></td>
+                        <td><input type="text" name="Std Acres"></td>
+                        <td><input type="text" name="Female KG"></td>
+                        <td><input type="text" name="Male KG"></td>
+                        <td><input type="text" name="Phone Number"></td>
+                        <td><input type="text" name="Remark"></td>
                     </tr>
                     <tr>
                         <td class="SNO">5</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="SNO">6</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="SNO">7</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="SNO">8</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="SNO">9</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="SNO">10</td>
-                        <td><input type="text" style="width: 260px;" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
-                    </tr>
-
-                    <tr>
-                        <td class="SNO"></td>
                         <td><input type="text" name="Farmer Name"></td>
-                        <td><input type="text" name="Female date" style="width: 85px;"></td>
-                        <td><input type="text" name="Male Date" style="width: 85px;"></td>
-                        <td><input type="text" name="Packets" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Std Acres" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Female KG" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="Male Kg" style="width: 30px; margin-left: 20px;"></td>
-                        <td><input type="text" name="1St Pass" style="width: 150px;"></td>
-
-                        <td><input type="text" name="Remark" style="width: 130px;"></td>
+                        <td><input type="text" name="Female date"></td>
+                        <td><input type="text" name="Male Date"></td>
+                        <td><input type="text" name="Packets"></td>
+                        <td><input type="text" name="Std Acres"></td>
+                        <td><input type="text" name="Female KG"></td>
+                        <td><input type="text" name="Male KG"></td>
+                        <td><input type="text" name="Phone Number"></td>
+                        <td><input type="text" name="Remark"></td>
                     </tr>
-                    <!-- Repeat for more rows -->
+                   
                 </tbody>
             </table>
             <div class="input-items">
-                <input type="Button" value="save" onclick="save()">
+                <input type="button" value="Save" id="saveData">
                 <input type="button" value="Print" id="print">
+                <input type="button" value="Add Row" id="addRow">
 
             </div>
         </form>
     </section>
 
-    <script>
-
-        const pt = document.getElementById("print");
-        pt.addEventListener("click", function () {
-
-            print();
-
-        })
-        function save() {
-            var fieldValue = document.getElementById('textfield').value;
-            localStorage.setItem('text', fieldValue)
-        }
-
-        function get() {
-            var storedValue = localStorage.getItem('text');
-            if (storedValue) {
-                document.getElementById('textfield').value = storedValue;
-            }
-        }
-
-        function remove() {
-            document.getElementById('textfield').value = '';
-            localStorage.removelItem('text');
-        }
-
-
-    </script>
     <footer>
-        <div style="
-        height: 50px;
-        text-align: center;
-        color: black;">
-            <h3 style="margin: 0px;">
-                <marquee behavior="" direction="">This is Computer Generated Sheet <SPan style="color: red;">**!
-                        Submission and refreshing page will cause enterd Data Will be Lost**</SPan><span
-                        style="color: green;">So Kindly Do Always Print </span></marquee>
+        <div>
+            <h3>
+                <marquee>This is a Computer Generated Sheet <span style="color: red;">**! Submission and refreshing page
+                        will cause entered Data Will be Lost**</span><span style="color: green;">So Kindly Do Always
+                        Print</span></marquee>
             </h3>
-
         </div>
     </footer>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
