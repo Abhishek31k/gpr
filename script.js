@@ -76,7 +76,7 @@ async function saveData() {
   const areaIncharge = document.getElementById("areaIncharge").value;
   const district = document.getElementById("district").value;
   const mandal = document.getElementById("mandal").value;
-
+  const pdfName = `${organizer}_${variety}`.replace(/\s+/g, "_");
   try {
     if (editingDocId) {
       const docRef = doc(db, "pdfLogs", editingDocId);
@@ -91,6 +91,7 @@ async function saveData() {
           district,
           mandal,
           tableData,
+          pdfName,
           timestamp: new Date().toISOString(),
         });
         alert("✅ Table Updated Successfully!");
@@ -107,6 +108,7 @@ async function saveData() {
         district,
         mandal,
         tableData,
+        pdfName,
         timestamp: new Date().toISOString(),
       });
       editingDocId = newDocRef.id;
@@ -138,10 +140,11 @@ async function loadSavedPdfs() {
     querySnapshot.forEach((doc) => {
       const data = doc.data();
       const docId = doc.id;
-
+      const pdfName = data.pdfName || "Details";
       savedPdfsContainer.innerHTML += `
               <li>
-                  <button onclick="downloadPdf('${docId}')">📥 Download</button>
+                  <strong>${pdfName}</strong>  
+                  <button onclick="downloadPdf('${docId}', '${pdfName}')">📥 Download</button>
                   <button onclick="editTable('${docId}')">✏️ View or Edit</button> 
                   <button onclick="deletePdf('${docId}')">🗑️ Delete</button>
                   (Saved on ${new Date(data.timestamp).toLocaleString()})
@@ -219,7 +222,7 @@ async function editTable(docId) {
   }
 }
 
-async function downloadPdf(docId) {
+async function downloadPdf(docId, pdfName) {
   const { jsPDF } = window.jspdf;
   const pdfDoc = new jsPDF({ orientation: "landscape" }); // ✅ Set Landscape Mode
 
@@ -305,7 +308,7 @@ async function downloadPdf(docId) {
     });
 
     // 🔹 Save PDF
-    pdfDoc.save("Farmer_Details.pdf");
+    pdfDoc.save(`${pdfName}.pdf`);
   } catch (error) {
     console.error("❌ Error downloading PDF: ", error);
   }
@@ -351,7 +354,12 @@ function printTable() {
   // 🔹 Load Logo Images (Ensure these files exist in your project)
   const logoLeft = "logo1.png";
   const logoRight = "trade-3.png";
-
+  let organizer = document.getElementById("organizer").value.trim();
+  const variety = document.getElementById("variety").value.trim();
+  if (organizer === "") {
+    organizer = "Details";
+  }
+  const pdfName = `${organizer}_${variety}`.replace(/\s+/g, "_");
   // 🔹 Add Logos
   pdfDoc.addImage(logoLeft, "PNG", 10, 10, 30, 30);
   pdfDoc.addImage(logoRight, "PNG", 250, 7, 25, 35); // Adjust for landscape
@@ -418,7 +426,7 @@ function printTable() {
   });
 
   // 🔹 Print or Save PDF
-  pdfDoc.save("Farmer_Details.pdf");
+  pdfDoc.save(`${pdfName}.pdf`);
 }
 
 // Make functions accessible from HTML
