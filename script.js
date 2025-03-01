@@ -78,34 +78,47 @@ async function saveData() {
   const mandal = document.getElementById("mandal").value;
 
   try {
-      if (editingDocId) {
-          const docRef = doc(db, "pdfLogs", editingDocId);
-          const docSnap = await getDoc(docRef);
+    if (editingDocId) {
+      const docRef = doc(db, "pdfLogs", editingDocId);
+      const docSnap = await getDoc(docRef);
 
-          if (docSnap.exists()) {
-              await updateDoc(docRef, {
-                  organizer, village, variety, areaIncharge, district, mandal, tableData, timestamp: new Date().toISOString()
-              });
-              alert("✅ Table Updated Successfully!");
-          } else {
-              alert("⚠️ Error: This document no longer exists.");
-              editingDocId = null;
-          }
+      if (docSnap.exists()) {
+        await updateDoc(docRef, {
+          organizer,
+          village,
+          variety,
+          areaIncharge,
+          district,
+          mandal,
+          tableData,
+          timestamp: new Date().toISOString(),
+        });
+        alert("✅ Table Updated Successfully!");
       } else {
-          const newDocRef = await addDoc(collection(db, "pdfLogs"), {
-              organizer, village, variety, areaIncharge, district, mandal, tableData, timestamp: new Date().toISOString()
-          });
-          editingDocId = newDocRef.id;
-          alert("✅ New Table Saved Successfully!");
+        alert("⚠️ Error: This document no longer exists.");
+        editingDocId = null;
       }
+    } else {
+      const newDocRef = await addDoc(collection(db, "pdfLogs"), {
+        organizer,
+        village,
+        variety,
+        areaIncharge,
+        district,
+        mandal,
+        tableData,
+        timestamp: new Date().toISOString(),
+      });
+      editingDocId = newDocRef.id;
+      alert("✅ New Table Saved Successfully!");
+    }
 
-      editingDocId = null;
-      loadSavedPdfs();
+    editingDocId = null;
+    loadSavedPdfs();
   } catch (error) {
-      console.error("❌ Error saving data: ", error);
+    console.error("❌ Error saving data: ", error);
   }
 }
-
 
 // 🔹 Function to Load Saved PDFs from Firestore
 async function loadSavedPdfs() {
@@ -113,20 +126,20 @@ async function loadSavedPdfs() {
   savedPdfsContainer.innerHTML = "<h3>📌 Previously Saved Tables</h3>";
 
   try {
-      const q = query(collection(db, "pdfLogs"), orderBy("timestamp", "desc"));
-      const querySnapshot = await getDocs(q);
+    const q = query(collection(db, "pdfLogs"), orderBy("timestamp", "desc"));
+    const querySnapshot = await getDocs(q);
 
-      if (querySnapshot.empty) {
-          savedPdfsContainer.innerHTML += `<p style="color: gray;">No saved tables found. Please save data to see logs.</p>`;
-          return;
-      }
+    if (querySnapshot.empty) {
+      savedPdfsContainer.innerHTML += `<p style="color: gray;">No saved tables found. Please save data to see logs.</p>`;
+      return;
+    }
 
-      savedPdfsContainer.innerHTML += "<ul>"; // Start List
-      querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          const docId = doc.id;
+    savedPdfsContainer.innerHTML += "<ul>"; // Start List
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const docId = doc.id;
 
-          savedPdfsContainer.innerHTML += `
+      savedPdfsContainer.innerHTML += `
               <li>
                   <button onclick="downloadPdf('${docId}')">📥 Download</button>
                   <button onclick="editTable('${docId}')">✏️ View or Edit</button> 
@@ -134,13 +147,12 @@ async function loadSavedPdfs() {
                   (Saved on ${new Date(data.timestamp).toLocaleString()})
               </li>
           `;
-      });
-      savedPdfsContainer.innerHTML += "</ul>"; // End List
+    });
+    savedPdfsContainer.innerHTML += "</ul>"; // End List
   } catch (error) {
-      console.error("❌ Error loading PDFs: ", error);
+    console.error("❌ Error loading PDFs: ", error);
   }
 }
-
 
 // 🔹 Function to Load a Saved Table for Editing
 async function editTable(docId) {
@@ -209,82 +221,95 @@ async function editTable(docId) {
 
 async function downloadPdf(docId) {
   const { jsPDF } = window.jspdf;
-  const pdfDoc = new jsPDF({ orientation: "landscape" }); // ✅ Set to Landscape Mode
+  const pdfDoc = new jsPDF({ orientation: "landscape" }); // ✅ Set Landscape Mode
 
   try {
-      // 🔹 Fetch saved data from Firestore
-      const docRef = doc(db, "pdfLogs", docId);
-      const docSnap = await getDoc(docRef);
+    const docRef = doc(db, "pdfLogs", docId);
+    const docSnap = await getDoc(docRef);
 
-      if (!docSnap.exists()) {
-          alert("⚠️ Error: Document not found! It may have been deleted.");
-          loadSavedPdfs(); // Refresh logs to remove missing entries
-          return;
-      }
+    if (!docSnap.exists()) {
+      alert("⚠️ Error: Document not found! It may have been deleted.");
+      loadSavedPdfs();
+      return;
+    }
 
-      const data = docSnap.data();
+    const data = docSnap.data();
 
-      // 🔹 Load Logo Images (Ensure these files exist in your project)
-      const logoLeft = "logo1.png";
-      const logoRight = "trade-3.png";
+    // 🔹 Load Logo Images (Ensure correct file paths)
+    const logoLeft = "logo1.png";
+    const logoRight = "trade-3.png";
 
-      // 🔹 Add Logos
-      pdfDoc.addImage(logoLeft, "PNG", 10, 10, 40, 20);
-      pdfDoc.addImage(logoRight, "PNG", 250, 10, 40, 20); // Adjust for landscape
+    // 🔹 Add Logos
+    pdfDoc.addImage(logoLeft, "PNG", 10, 10, 30, 30);
+    pdfDoc.addImage(logoRight, "PNG", 250, 7, 25, 35); // Adjust for landscape
 
-      // 🔹 Add Header
-      pdfDoc.setFontSize(14);
-      pdfDoc.setFont("helvetica", "bold");
-      pdfDoc.text("Star Agro Tech Pvt Ltd®", 148, 20, { align: "center" });
-      pdfDoc.setFontSize(12);
-      pdfDoc.text("Production Area Eluru, Season Rabi 2023-2024", 148, 28, { align: "center" });
+    // 🔹 Add Header
+    pdfDoc.setFontSize(25);
+    pdfDoc.setFont("helvetica", "bold");
+    pdfDoc.text("Star Agro Tech Pvt Ltd®", 148, 20, { align: "center" });
+    pdfDoc.setFontSize(18);
+    pdfDoc.text("Production Area Eluru, Season Rabi 2023-2024", 148, 28, {
+      align: "center",
+    });
 
-      // 🔹 Arrange Form Data in a 3x3 Grid (Side by Side)
-      pdfDoc.setFontSize(10);
-      pdfDoc.text(`Organizer: ${data.organizer}`, 20, 40);
-      pdfDoc.text(`Village: ${data.village}`, 120, 40);
-      pdfDoc.text(`Variety: ${data.variety}`, 220, 40);
+    // 🔹 Arrange Form Data in 3x3 Grid
+    pdfDoc.setFontSize(10);
+    pdfDoc.text(`Organizer: ${data.organizer}`, 40, 50);
+    pdfDoc.text(`Village: ${data.village}`, 120, 50);
+    pdfDoc.text(`Variety: ${data.variety}`, 200, 50);
 
-      pdfDoc.text(`Area Incharge: ${data.areaIncharge}`, 20, 50);
-      pdfDoc.text(`District: ${data.district}`, 120, 50);
-      pdfDoc.text(`Mandal: ${data.mandal}`, 220, 50);
+    pdfDoc.text(`Area Incharge: ${data.areaIncharge}`, 40, 60);
+    pdfDoc.text(`District: ${data.district}`, 120, 60);
+    pdfDoc.text(`Mandal: ${data.mandal}`, 200, 60);
 
-      // 🔹 Ensure Table Data is Correctly Mapped
-      const tableData = data.tableData.map(row => [
-          row.sno || "",         // S.No
-          row.farmerName || "",  // Farmer Name
-          row.fDate || "",       // F Date
-          row.mDate || "",       // M Date
-          row.packets || "",     // Packets
-          row.stdAcres || "",    // Std Acres
-          row.femaleKG || "",    // Female KG
-          row.maleKG || "",      // Male KG
-          row.phoneNumber || "", // Phone Number
-          row.remark || ""       // Remark
-      ]);
+    // 🔹 Extract and Add Table Data
+    const tableData = data.tableData.map((row) => [
+      row.sno || "",
+      row.farmerName || "",
+      row.fDate || "",
+      row.mDate || "",
+      row.packets || "",
+      row.stdAcres || "",
+      row.femaleKG || "",
+      row.maleKG || "",
+      row.phoneNumber || "",
+      row.remark || "",
+    ]);
 
-      // 🔹 Add Table with Correct Column Order
-      pdfDoc.autoTable({
-          head: [["S.No", "Farmer Name", "F Date", "M Date", "Packets", "Std Acres", "Female KG", "Male KG", "Phone Number", "Remark"]],
-          body: tableData,
-          startY: 60, // ✅ Adjusted to reduce gap
-          theme: "grid",
-          styles: { fontSize: 10, cellPadding: 2 },
-          headStyles: { fillColor: [0, 128, 0] }, // Green Header
-          columnStyles: { 0: { cellWidth: 15 }, 1: { cellWidth: 35 }, 8: { cellWidth: 30 }, 9: { cellWidth: 40 } }, // Adjust Column Widths
-      });
+    pdfDoc.autoTable({
+      head: [
+        [
+          "S.No",
+          "Farmer Name",
+          "F Date",
+          "M Date",
+          "Packets",
+          "Std Acres",
+          "Female KG",
+          "Male KG",
+          "Phone Number",
+          "Remark",
+        ],
+      ],
+      body: tableData,
+      startY: 70,
+      theme: "grid",
+      styles: { fontSize: 10, cellPadding: 2 },
+      headStyles: { fillColor: [0, 128, 0] },
+      columnStyles: {
+        0: { cellWidth: 15 },
+        1: { cellWidth: 35 },
+        8: { cellWidth: 30 },
+        9: { cellWidth: 40 },
+      }, // Adjust Column Widths
+    });
 
-      // 🔹 Save PDF
-      pdfDoc.save("FarmerDetails_Landscape.pdf");
-
+    // 🔹 Save PDF
+    pdfDoc.save("Farmer_Details.pdf");
   } catch (error) {
-      console.error("❌ Error downloading PDF: ", error);
+    console.error("❌ Error downloading PDF: ", error);
   }
 }
-
-
-
-
 
 // 🔹 Function to Delete PDF from Firestore
 async function deletePdf(docId) {
@@ -328,42 +353,73 @@ function printTable() {
   const logoRight = "trade-3.png";
 
   // 🔹 Add Logos
-  pdfDoc.addImage(logoLeft, "PNG", 10, 10, 40, 20);
-  pdfDoc.addImage(logoRight, "PNG", 250, 10, 40, 20); // Adjust for landscape
+  pdfDoc.addImage(logoLeft, "PNG", 10, 10, 30, 30);
+  pdfDoc.addImage(logoRight, "PNG", 250, 7, 25, 35); // Adjust for landscape
 
   // 🔹 Add Header
-  pdfDoc.setFontSize(14);
+  pdfDoc.setFontSize(25);
   pdfDoc.setFont("helvetica", "bold");
   pdfDoc.text("Star Agro Tech Pvt Ltd®", 148, 20, { align: "center" });
-  pdfDoc.setFontSize(12);
-  pdfDoc.text("Production Area Eluru, Season Rabi 2023-2024", 148, 28, { align: "center" });
+  pdfDoc.setFontSize(18);
+  pdfDoc.text("Production Area Eluru, Season Rabi 2023-2024", 148, 28, {
+    align: "center",
+  });
 
   // 🔹 Get Form Values (3x3 Layout)
   pdfDoc.setFontSize(10);
-  pdfDoc.text(`Organizer: ${document.getElementById("organizer").value}`, 20, 40);
-  pdfDoc.text(`Village: ${document.getElementById("village").value}`, 120, 40);
-  pdfDoc.text(`Variety: ${document.getElementById("variety").value}`, 220, 40);
+  pdfDoc.text(
+    `Organizer: ${document.getElementById("organizer").value}`,
+    40,
+    50
+  );
+  pdfDoc.text(`Village: ${document.getElementById("village").value}`, 120, 50);
+  pdfDoc.text(`Variety: ${document.getElementById("variety").value}`, 200, 50);
 
-  pdfDoc.text(`Area Incharge: ${document.getElementById("areaIncharge").value}`, 20, 50);
-  pdfDoc.text(`District: ${document.getElementById("district").value}`, 120, 50);
-  pdfDoc.text(`Mandal: ${document.getElementById("mandal").value}`, 220, 50);
+  pdfDoc.text(
+    `Area Incharge: ${document.getElementById("areaIncharge").value}`,
+    40,
+    60
+  );
+  pdfDoc.text(
+    `District: ${document.getElementById("district").value}`,
+    120,
+    60
+  );
+  pdfDoc.text(`Mandal: ${document.getElementById("mandal").value}`, 200, 60);
 
   // 🔹 Extract and Add Table Data
-  const tableData = extractTableData().map(row => Object.values(row));
+  const tableData = extractTableData().map((row) => Object.values(row));
   pdfDoc.autoTable({
-      head: [["S.No", "Farmer Name", "F Date", "M Date", "Packets", "Std Acres", "Female KG", "Male KG", "Phone Number", "Remark"]],
-      body: tableData,
-      startY: 60,
-      theme: "grid",
-      styles: { fontSize: 10, cellPadding: 2 },
-      headStyles: { fillColor: [0, 128, 0] },
-      columnStyles: { 0: { cellWidth: 15 }, 1: { cellWidth: 35 }, 8: { cellWidth: 30 }, 9: { cellWidth: 40 } }, // Adjust Column Widths
+    head: [
+      [
+        "S.No",
+        "Farmer Name",
+        "F Date",
+        "M Date",
+        "Packets",
+        "Std Acres",
+        "Female KG",
+        "Male KG",
+        "Phone Number",
+        "Remark",
+      ],
+    ],
+    body: tableData,
+    startY: 70,
+    theme: "grid",
+    styles: { fontSize: 10, cellPadding: 2 },
+    headStyles: { fillColor: [0, 128, 0] },
+    columnStyles: {
+      0: { cellWidth: 15 },
+      1: { cellWidth: 35 },
+      8: { cellWidth: 30 },
+      9: { cellWidth: 40 },
+    }, // Adjust Column Widths
   });
 
   // 🔹 Print or Save PDF
-  pdfDoc.save("FarmerDetails_Landscape_Print.pdf");
+  pdfDoc.save("Farmer_Details.pdf");
 }
-
 
 // Make functions accessible from HTML
 window.downloadPdf = downloadPdf;
