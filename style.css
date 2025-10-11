@@ -21,6 +21,11 @@ body {
     flex-direction: row;
     justify-content: space-evenly;
 }
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
 
 .header-info {
     width: min-content;
@@ -229,3 +234,22 @@ input[type="button"]:hover {
         /* Wrap long text */
     }
 }
+@media print {
+  header,
+  .btn,
+  footer,
+  #toggleDarkMode,
+  #savedPdfs {
+    display: none !important;
+  }
+
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  .table {
+    font-size: 12px;
+  }
+}
+
