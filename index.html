@@ -3,196 +3,206 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Farmer Details Form</title>
 
-  <!-- Bootstrap 5 -->
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    body {
-      background-color: #f8f9fa;
-    }
-
-    header {
-      background: #ffffff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .logo img {
-      max-height: 70px;
-    }
-
-    .header-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
-
-    .form-section {
-      margin-top: 2rem;
-    }
-
-    .table th {
+    thead th {
       position: sticky;
       top: 0;
-      background-color: #343a40;
+      z-index: 2;
+      background-color: var(--bs-dark);
       color: white;
-      z-index: 1;
     }
 
-    .btn i {
-      margin-right: 5px;
-    }
+    @media print {
+      header,
+      .btn,
+      footer,
+      #toggleDarkMode,
+      #savedPdfs {
+        display: none !important;
+      }
 
-    .footer-marquee {
-      font-weight: bold;
-      color: yellow;
+      body {
+        background-color: white;
+        color: black;
+      }
+
+      .table {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header class="border-bottom">
-    <div class="container header-wrapper">
-      <div class="logo">
-        <a href="#"><img src="logo1.png" alt="Company Logo" /></a>
+  <header class="bg-light py-3 border-bottom">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+      <div>
+        <a href="#">
+          <img src="logo1.png" alt="Logo" style="width: 90px" />
+        </a>
       </div>
-
-      <div class="text-center">
-        <h2 class="text-danger mb-1">Star Agro Tech Pvt Ltd®</h2>
-        <p class="text-muted">Production Area: Eluru | Season: Rabi 2023–2024</p>
+      <div class="text-center flex-grow-1 px-3">
+        <h1 class="h4 mb-2">
+          <span class="text-danger">Star Agro tech Pvt Ltd®</span><br />
+          Production Area Eluru, Season Rabi 2023 - 2024
+        </h1>
+        <div class="row g-2">
+          <div class="col-md-4">
+            <label class="form-label">Organizer</label>
+            <input type="text" id="organizer" class="form-control" />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Village</label>
+            <input type="text" id="village" class="form-control" />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Variety</label>
+            <input type="text" id="variety" class="form-control" />
+          </div>
+          <div class="col-md-4 mt-2">
+            <label class="form-label">Area Incharge</label>
+            <input type="text" id="areaIncharge" class="form-control" />
+          </div>
+          <div class="col-md-4 mt-2">
+            <label class="form-label">District</label>
+            <input type="text" id="district" class="form-control" />
+          </div>
+          <div class="col-md-4 mt-2">
+            <label class="form-label">Mandal</label>
+            <input type="text" id="mandal" class="form-control" />
+          </div>
+        </div>
       </div>
-
-      <div class="logo">
-        <a href="#"><img src="trade-3.png" alt="Trade Logo" /></a>
+      <div>
+        <a href="#">
+          <img src="trade-3.png" alt="Logo" style="width: 70px" />
+        </a>
       </div>
     </div>
   </header>
 
-  <main class="container form-section">
+  <main class="container my-4">
     <!-- Dark Mode Toggle -->
-<div class="container d-flex justify-content-end my-4">
-  <button class="btn btn-outline-dark" id="toggleDarkMode">
-    <i class="bi bi-moon-stars"></i> Toggle Dark Mode
-  </button>
-</div>
-
-<!-- Toast Container -->
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
-  <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert">
-    <div class="d-flex">
-      <div class="toast-body" id="toastMsg">Saved successfully!</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-    </div>
-  </div>
-</div>
-
-    <!-- Organizer Info -->
-    <div class="card shadow-sm mb-4">
-      <div class="card-body">
-        <h5 class="card-title mb-3 text-primary">Organizer & Area Details</h5>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label for="organizer" class="form-label">Organizer</label>
-            <input type="text" class="form-control" id="organizer" />
-          </div>
-          <div class="col-md-4">
-            <label for="village" class="form-label">Village</label>
-            <input type="text" class="form-control" id="village" />
-          </div>
-          <div class="col-md-4">
-            <label for="variety" class="form-label">Variety</label>
-            <input type="text" class="form-control" id="variety" />
-          </div>
-          <div class="col-md-4">
-            <label for="areaIncharge" class="form-label">Area Incharge</label>
-            <input type="text" class="form-control" id="areaIncharge" />
-          </div>
-          <div class="col-md-4">
-            <label for="district" class="form-label">District</label>
-            <input type="text" class="form-control" id="district" />
-          </div>
-          <div class="col-md-4">
-            <label for="mandal" class="form-label">Mandal</label>
-            <input type="text" class="form-control" id="mandal" />
-          </div>
-        </div>
-      </div>
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-outline-dark" id="toggleDarkMode">
+        <i class="bi bi-moon-stars"></i> Toggle Dark Mode
+      </button>
     </div>
 
-    <!-- Farmer Table -->
+    <!-- Search Box -->
+    <div class="mb-3">
+      <input type="text" class="form-control" id="searchBox" placeholder="Search by Farmer Name or Phone…" />
+    </div>
+
     <div class="card shadow-sm">
-      <div class="card-body">
-        <h5 class="card-title text-primary mb-3">Farmer Details Table</h5>
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover align-middle text-center" id="myTable">
-            <thead class="table-dark">
-              <tr>
-                <th>S.No</th>
-                <th>Farmer Name</th>
-                <th>F. Date</th>
-                <th>M. Date</th>
-                <th>Packets</th>
-                <th>Std Acres</th>
-                <th>Female KG</th>
-                <th>Male KG</th>
-                <th>Phone</th>
-                <th>Remark</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="SNO">1</td>
-                <td><input type="text" class="form-control" /></td>
-                <td><input type="date" class="form-control" /></td>
-                <td><input type="date" class="form-control" /></td>
-                <td><input type="number" class="form-control" /></td>
-                <td><input type="number" class="form-control" /></td>
-                <td><input type="number" class="form-control" /></td>
-                <td><input type="number" class="form-control" /></td>
-                <td><input type="tel" class="form-control" /></td>
-                <td><input type="text" class="form-control" /></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="card-body p-2">
+        <form>
+          <div class="table-responsive">
+            <table class="table table-bordered text-center align-middle mb-0" id="myTable">
+              <thead class="table-dark">
+                <tr>
+                  <th>S.No</th>
+                  <th>Farmer Name</th>
+                  <th>F.Date</th>
+                  <th>M.Date</th>
+                  <th>Packets</th>
+                  <th>Std Acres</th>
+                  <th>Female KG</th>
+                  <th>Male KG</th>
+                  <th>Phone Number</th>
+                  <th>Remark</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="SNO">1</td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="date" class="form-control" /></td>
+                  <td><input type="date" class="form-control" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><input type="number" class="form-control" /></td>
+                  <td><input type="tel" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-        <!-- Buttons -->
-        <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
-          <button type="button" class="btn btn-success" id="saveData">
-            <i class="bi bi-save"></i>Save
-          </button>
-          <button type="button" class="btn btn-primary" id="print">
-            <i class="bi bi-printer"></i>Print
-          </button>
-          <button type="button" class="btn btn-secondary" id="addRow">
-            <i class="bi bi-plus-circle"></i>Add Row
-          </button>
-        </div>
+          <div
+            class="d-flex justify-content-center flex-wrap gap-3 mt-3"
+            style="gap: 1rem !important"
+          >
+            <button type="button" class="btn btn-success" id="saveData">
+              <i class="bi bi-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-primary" id="print">
+              <i class="bi bi-printer"></i> Print
+            </button>
+            <button type="button" class="btn btn-secondary" id="addRow">
+              <i class="bi bi-plus-circle"></i> Add Row
+            </button>
+            <button type="button" class="btn btn-info" id="exportExcel">
+              <i class="bi bi-file-earmark-excel"></i> Export Excel
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-
-    <!-- Load/Save Area -->
-    <div id="savedPdfs" class="container my-4 border-top pt-3"></div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white py-3 text-center mt-5">
-    <marquee class="footer-marquee">This is a computer-generated sheet. Please remember to Save!</marquee>
+  <footer class="bg-dark text-white py-3 mt-4">
+    <div class="container text-center">
+      <marquee>This is a Computer Generated Sheet. Always Save!</marquee>
+    </div>
   </footer>
 
-  <!-- Bootstrap & JS -->
-  <script type="module" src="script.js"></script>
+  <div id="savedPdfs" class="container my-4 border-top pt-3"></div>
+
+  <!-- Toast Container -->
+  <div
+    class="position-fixed bottom-0 end-0 p-3"
+    style="z-index: 9999"
+  >
+    <div
+      id="liveToast"
+      class="toast align-items-center text-white bg-success border-0"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="d-flex">
+        <div class="toast-body" id="toastMsg">Saved successfully!</div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- External Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-  <!-- Optional Icons (Bootstrap Icons CDN) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Your custom script -->
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
-
