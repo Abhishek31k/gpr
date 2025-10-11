@@ -174,3 +174,82 @@ window.onload = () => {
     updateSavedSection();
     loadFromLocalStorage();
 };
+// ========== Toast Message Function ==========
+function showToast(message = "Success", color = "bg-success") {
+  const toastEl = document.getElementById('liveToast');
+  const toastMsg = document.getElementById('toastMsg');
+  toastEl.className = `toast align-items-center text-white ${color} border-0`;
+  toastMsg.textContent = message;
+  const toast = new bootstrap.Toast(toastEl);
+  toast.show();
+}
+
+// Example: Replace alert() with showToast()
+saveBtn.addEventListener('click', () => {
+  saveToLocalStorage();
+  showToast("Data saved successfully!");
+});
+
+// ========== Dark Mode Toggle ==========
+document.getElementById('toggleDarkMode').addEventListener('click', () => {
+  document.body.classList.toggle('bg-dark');
+  document.body.classList.toggle('text-white');
+  document.querySelectorAll('.card').forEach(card => card.classList.toggle('bg-dark'));
+  document.querySelectorAll('.form-control').forEach(ctrl => ctrl.classList.toggle('bg-dark'));
+  showToast("Dark mode toggled", "bg-secondary");
+});
+
+// ========== Add Delete Button to Each Row ==========
+function addDeleteButton(row) {
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'btn btn-sm btn-outline-danger';
+  deleteBtn.innerHTML = '<i class="bi bi-trash"></i>';
+  deleteBtn.addEventListener('click', () => {
+    if (confirm('Delete this row?')) {
+      row.remove();
+      updateRowNumbers();
+      updateTotals();
+      showToast("Row deleted", "bg-warning");
+    }
+  });
+
+  const td = document.createElement('td');
+  td.appendChild(deleteBtn);
+  row.appendChild(td);
+}
+
+function updateRowNumbers() {
+  document.querySelectorAll('#myTable tbody tr').forEach((row, i) => {
+    row.querySelector('.SNO').textContent = i + 1;
+  });
+}
+
+// Add to existing addRow function:
+addRowBtn.addEventListener('click', () => {
+  const rowCount = tableBody.rows.length;
+  const newRow = document.createElement('tr');
+  newRow.innerHTML = `
+    <td class="SNO">${rowCount + 1}</td>
+    <td><input type="text" class="form-control" /></td>
+    <td><input type="date" class="form-control" /></td>
+    <td><input type="date" class="form-control" /></td>
+    <td><input type="number" class="form-control" /></td>
+    <td><input type="number" class="form-control" /></td>
+    <td><input type="number" class="form-control female" /></td>
+    <td><input type="number" class="form-control male" /></td>
+    <td><input type="tel" class="form-control" /></td>
+    <td><input type="text" class="form-control" /></td>
+  `;
+  addDeleteButton(newRow);
+  tableBody.appendChild(newRow);
+  updateTotals();
+});
+
+// ========== On Load: Add Delete Button to Existing Row ==========
+window.onload = () => {
+  updateSavedSection();
+  loadFromLocalStorage();
+
+  document.querySelectorAll('#myTable tbody tr').forEach(row => addDeleteButton(row));
+};
+
