@@ -1,435 +1,176 @@
-// 🔹 Import Firebase SDK
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  doc,
-  setDoc,
-  getDoc,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  updateDoc,
-  query,
-  orderBy,
-} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+// ========== DOM References ==========
+const tableBody = document.querySelector('#myTable tbody');
+const addRowBtn = document.getElementById('addRow');
+const saveBtn = document.getElementById('saveData');
+const printBtn = document.getElementById('print');
 
-// 🔹 Firebase Configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCwbnY2EVuQpg87WVmS3fEQ749wiREmXjk",
-  authDomain: "gpr-data-table.firebaseapp.com",
-  projectId: "gpr-data-table",
-  storageBucket: "gpr-data-table.appspot.com",
-  messagingSenderId: "821418964490",
-  appId: "1:821418964490:web:f5776a9668bb06336511f3",
-  measurementId: "G-QPVQ3NLQ6S",
-};
+// ========== Feature 1: Add Row with Auto-Increment ==========
+addRowBtn.addEventListener('click', () => {
+    const rowCount = tableBody.rows.length;
+    const newRow = document.createElement('tr');
 
-// 🔹 Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+    newRow.innerHTML = `
+        <td class="SNO">${rowCount + 1}</td>
+        <td><input type="text" class="form-control"></td>
+        <td><input type="date" class="form-control"></td>
+        <td><input type="date" class="form-control"></td>
+        <td><input type="number" class="form-control"></td>
+        <td><input type="number" class="form-control"></td>
+        <td><input type="number" class="form-control female"></td>
+        <td><input type="number" class="form-control male"></td>
+        <td><input type="tel" class="form-control"></td>
+        <td><input type="text" class="form-control"></td>
+    `;
 
-let editingDocId = null; // Track which document is being edited
-
-document.addEventListener("DOMContentLoaded", function () {
-  loadSavedPdfs();
-  document.getElementById("saveData").addEventListener("click", saveData);
-  document.getElementById("addRow").addEventListener("click", addNewRow);
-  document.getElementById("print").addEventListener("click", printTable);
+    tableBody.appendChild(newRow);
 });
 
-// 🔹 Function to Extract Table Data (Fix: Store as Object Array)
-function extractTableData() {
-  const table = document
-    .getElementById("myTable")
-    .getElementsByTagName("tbody")[0];
-  const rows = table.getElementsByTagName("tr");
-  const data = [];
+// ========== Feature 2: Input Validation ==========
+function validateInputs() {
+    let isValid = true;
+    tableBody.querySelectorAll('tr').forEach((row, index) => {
+        const inputs = row.querySelectorAll('input');
+        const farmerName = inputs[0].value.trim();
+        const phone = inputs[8].value.trim();
 
-  for (let i = 0; i < rows.length; i++) {
-    const cells = rows[i].getElementsByTagName("td");
-    const rowData = {
-      sno: parseInt(cells[0].textContent.trim()) || i + 1,
-      farmerName: cells[1].querySelector("input").value.trim() || "",
-      fDate: cells[2].querySelector("input").value.trim() || "",
-      mDate: cells[3].querySelector("input").value.trim() || "",
-      packets: cells[4].querySelector("input").value.trim() || "",
-      stdAcres: cells[5].querySelector("input").value.trim() || "",
-      femaleKG: cells[6].querySelector("input").value.trim() || "",
-      maleKG: cells[7].querySelector("input").value.trim() || "",
-      phoneNumber: cells[8].querySelector("input").value.trim() || "",
-      remark: cells[9].querySelector("input").value.trim() || "",
-    };
-    data.push(rowData);
-  }
-  return data;
-}
-
-// 🔹 Function to Save or Update Data
-async function saveData() {
-  const tableData = extractTableData(); // ✅ Only extract table data, no PDFs
-
-  // 🔹 Get form values
-  const organizer = document.getElementById("organizer").value;
-  const village = document.getElementById("village").value;
-  const variety = document.getElementById("variety").value;
-  const areaIncharge = document.getElementById("areaIncharge").value;
-  const district = document.getElementById("district").value;
-  const mandal = document.getElementById("mandal").value;
-  const pdfName = `${organizer}_${variety}`.replace(/\s+/g, "_");
-  try {
-    if (editingDocId) {
-      const docRef = doc(db, "pdfLogs", editingDocId);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        await updateDoc(docRef, {
-          organizer,
-          village,
-          variety,
-          areaIncharge,
-          district,
-          mandal,
-          tableData,
-          pdfName,
-          timestamp: new Date().toISOString(),
-        });
-        alert("✅ Table Updated Successfully!");
-      } else {
-        alert("⚠️ Error: This document no longer exists.");
-        editingDocId = null;
-      }
-    } else {
-      const newDocRef = await addDoc(collection(db, "pdfLogs"), {
-        organizer,
-        village,
-        variety,
-        areaIncharge,
-        district,
-        mandal,
-        tableData,
-        pdfName,
-        timestamp: new Date().toISOString(),
-      });
-      editingDocId = newDocRef.id;
-      alert("✅ New Table Saved Successfully!");
-    }
-
-    editingDocId = null;
-    loadSavedPdfs();
-  } catch (error) {
-    console.error("❌ Error saving data: ", error);
-  }
-}
-
-// 🔹 Function to Load Saved PDFs from Firestore
-async function loadSavedPdfs() {
-  const savedPdfsContainer = document.getElementById("savedPdfs");
-  savedPdfsContainer.innerHTML = "<h3>📌 Previously Saved Tables</h3>";
-
-  try {
-    const q = query(collection(db, "pdfLogs"), orderBy("timestamp", "desc"));
-    const querySnapshot = await getDocs(q);
-
-    if (querySnapshot.empty) {
-      savedPdfsContainer.innerHTML += `<p style="color: gray;">No saved tables found. Please save data to see logs.</p>`;
-      return;
-    }
-
-    savedPdfsContainer.innerHTML += "<ul>"; // Start List
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      const docId = doc.id;
-      const pdfName = data.pdfName || "Details";
-      savedPdfsContainer.innerHTML += `
-              <li>
-                  <strong>${pdfName}</strong>  
-                  <button onclick="downloadPdf('${docId}', '${pdfName}')">📥 Download</button>
-                  <button onclick="editTable('${docId}')">✏️ View or Edit</button> 
-                  <button onclick="deletePdf('${docId}')">🗑️ Delete</button>
-                  (Saved on ${new Date(data.timestamp).toLocaleString()})
-              </li>
-          `;
+        if (farmerName === '' || phone === '' || phone.length < 10) {
+            isValid = false;
+            row.style.backgroundColor = '#ffcccc'; // highlight invalid row
+        } else {
+            row.style.backgroundColor = ''; // reset
+        }
     });
-    savedPdfsContainer.innerHTML += "</ul>"; // End List
-  } catch (error) {
-    console.error("❌ Error loading PDFs: ", error);
-  }
+
+    if (!isValid) alert('Please fill required fields correctly (Name & Phone Number).');
+    return isValid;
 }
 
-// 🔹 Function to Load a Saved Table for Editing
-async function editTable(docId) {
-  try {
-    const docRef = doc(db, "pdfLogs", docId);
-    const docSnap = await getDoc(docRef);
+// ========== Feature 3: Live Total KG Calculation ==========
+function updateTotals() {
+    let femaleTotal = 0, maleTotal = 0;
 
-    if (docSnap.exists()) {
-      const data = docSnap.data();
+    tableBody.querySelectorAll('tr').forEach(row => {
+        const female = parseFloat(row.querySelector('.female')?.value) || 0;
+        const male = parseFloat(row.querySelector('.male')?.value) || 0;
+        femaleTotal += female;
+        maleTotal += male;
+    });
 
-      // 🔹 Load data into form
-      document.getElementById("organizer").value = data.organizer;
-      document.getElementById("village").value = data.village;
-      document.getElementById("variety").value = data.variety;
-      document.getElementById("areaIncharge").value = data.areaIncharge;
-      document.getElementById("district").value = data.district;
-      document.getElementById("mandal").value = data.mandal;
+    let footer = document.querySelector('tfoot');
+    if (!footer) {
+        footer = document.createElement('tfoot');
+        document.getElementById('myTable').appendChild(footer);
+    }
 
-      // 🔹 Load table data
-      const table = document
-        .getElementById("myTable")
-        .getElementsByTagName("tbody")[0];
-      table.innerHTML = "";
+    footer.innerHTML = `
+        <tr class="table-info">
+            <td colspan="6" class="text-end fw-bold">Total KG:</td>
+            <td id="totalFemale">${femaleTotal.toFixed(2)}</td>
+            <td id="totalMale">${maleTotal.toFixed(2)}</td>
+            <td colspan="2"></td>
+        </tr>
+    `;
+}
 
-      if (data.tableData && Array.isArray(data.tableData)) {
-        data.tableData.forEach((row) => {
-          const newRow = table.insertRow();
-          const cellOrder = [
-            "sno",
-            "farmerName",
-            "fDate",
-            "mDate",
-            "packets",
-            "stdAcres",
-            "femaleKG",
-            "maleKG",
-            "phoneNumber",
-            "remark",
-          ];
+tableBody.addEventListener('input', updateTotals);
 
-          cellOrder.forEach((key, index) => {
-            const cell = newRow.insertCell(index);
+// ========== Feature 4: Export to PDF ==========
+printBtn.addEventListener('click', () => {
+    import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js').then(jsPDFModule => {
+        const { jsPDF } = jsPDFModule;
+        const doc = new jsPDF();
 
-            if (key === "sno") {
-              cell.textContent = row[key] || table.rows.length; // Ensure S.No is a number
+        const headers = [["S.No", "Farmer Name", "F.Date", "M.Date", "Packets", "Std Acres", "Female KG", "Male KG", "Phone", "Remark"]];
+        const data = [];
+
+        tableBody.querySelectorAll('tr').forEach(row => {
+            const rowData = [];
+            row.querySelectorAll('td').forEach((cell, i) => {
+                if (i === 0) {
+                    rowData.push(cell.textContent.trim());
+                } else {
+                    const input = cell.querySelector('input');
+                    rowData.push(input?.value || '');
+                }
+            });
+            data.push(rowData);
+        });
+
+        doc.autoTable({
+            head: headers,
+            body: data
+        });
+
+        doc.save("FarmerDetails.pdf");
+    });
+});
+
+// ========== Feature 5: Save & Load using LocalStorage ==========
+function saveToLocalStorage() {
+    if (!validateInputs()) return;
+
+    const tableData = [];
+    tableBody.querySelectorAll('tr').forEach(row => {
+        const rowData = [];
+        row.querySelectorAll('td').forEach((cell, i) => {
+            if (i === 0) {
+                rowData.push(cell.textContent.trim());
             } else {
-              const input = document.createElement("input");
-              input.type = "text";
-              input.name = key; // Assigns meaningful names
-              input.id = `row${table.rows.length}-col${key}`;
-              input.value = row[key] || "";
-              cell.appendChild(input);
+                const input = cell.querySelector('input');
+                rowData.push(input?.value || '');
             }
-          });
         });
-      } else {
-        console.error("❌ Error: No table data found in document.");
-      }
-
-      editingDocId = docId; // Set edit mode
-    }
-  } catch (error) {
-    console.error("❌ Error loading table: ", error);
-  }
-}
-
-async function downloadPdf(docId, pdfName) {
-  const { jsPDF } = window.jspdf;
-  const pdfDoc = new jsPDF({ orientation: "landscape" }); // ✅ Set Landscape Mode
-
-  try {
-    const docRef = doc(db, "pdfLogs", docId);
-    const docSnap = await getDoc(docRef);
-
-    if (!docSnap.exists()) {
-      alert("⚠️ Error: Document not found! It may have been deleted.");
-      loadSavedPdfs();
-      return;
-    }
-
-    const data = docSnap.data();
-
-    // 🔹 Load Logo Images (Ensure correct file paths)
-    const logoLeft = "logo1.png";
-    const logoRight = "trade-3.png";
-
-    // 🔹 Add Logos
-    pdfDoc.addImage(logoLeft, "PNG", 10, 10, 30, 30);
-    pdfDoc.addImage(logoRight, "PNG", 250, 7, 25, 35); // Adjust for landscape
-
-    // 🔹 Add Header
-    pdfDoc.setFontSize(25);
-    pdfDoc.setFont("helvetica", "bold");
-    pdfDoc.text("Star Agro Tech Pvt Ltd®", 148, 20, { align: "center" });
-    pdfDoc.setFontSize(18);
-    pdfDoc.text("Production Area Eluru, Season Rabi 2023-2024", 148, 28, {
-      align: "center",
+        tableData.push(rowData);
     });
 
-    // 🔹 Arrange Form Data in 3x3 Grid
-    pdfDoc.setFontSize(10);
-    pdfDoc.text(`Organizer: ${data.organizer}`, 40, 50);
-    pdfDoc.text(`Village: ${data.village}`, 120, 50);
-    pdfDoc.text(`Variety: ${data.variety}`, 200, 50);
+    localStorage.setItem('farmerTableData', JSON.stringify(tableData));
+    alert("Data saved locally!");
+    updateSavedSection();
+}
 
-    pdfDoc.text(`Area Incharge: ${data.areaIncharge}`, 40, 60);
-    pdfDoc.text(`District: ${data.district}`, 120, 60);
-    pdfDoc.text(`Mandal: ${data.mandal}`, 200, 60);
+function loadFromLocalStorage() {
+    const data = JSON.parse(localStorage.getItem('farmerTableData'));
+    if (!data) return;
 
-    // 🔹 Extract and Add Table Data
-    const tableData = data.tableData.map((row) => [
-      row.sno || "",
-      row.farmerName || "",
-      row.fDate || "",
-      row.mDate || "",
-      row.packets || "",
-      row.stdAcres || "",
-      row.femaleKG || "",
-      row.maleKG || "",
-      row.phoneNumber || "",
-      row.remark || "",
-    ]);
-
-    pdfDoc.autoTable({
-      head: [
-        [
-          "S.No",
-          "Farmer Name",
-          "F Date",
-          "M Date",
-          "Packets",
-          "Std Acres",
-          "Female KG",
-          "Male KG",
-          "Phone Number",
-          "Remark",
-        ],
-      ],
-      body: tableData,
-      startY: 70,
-      theme: "grid",
-      styles: { fontSize: 10, cellPadding: 2 },
-      headStyles: { fillColor: [0, 128, 0] },
-      columnStyles: {
-        0: { cellWidth: 15 },
-        1: { cellWidth: 35 },
-        8: { cellWidth: 30 },
-        9: { cellWidth: 40 },
-      }, // Adjust Column Widths
+    tableBody.innerHTML = '';
+    data.forEach((rowData, i) => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td class="SNO">${i + 1}</td>
+            ${rowData.slice(1).map((val, idx) => `
+                <td><input type="${[2, 3].includes(idx) ? 'date' : (idx === 4 || idx === 5 || idx === 6 || idx === 7 ? 'number' : 'text')}"
+                     class="form-control ${idx === 6 ? 'female' : ''} ${idx === 7 ? 'male' : ''}" 
+                     value="${val}">
+                </td>
+            `).join('')}
+        `;
+        tableBody.appendChild(newRow);
     });
 
-    // 🔹 Save PDF
-    pdfDoc.save(`${pdfName}.pdf`);
-  } catch (error) {
-    console.error("❌ Error downloading PDF: ", error);
-  }
+    updateTotals();
 }
 
-// 🔹 Function to Delete PDF from Firestore
-async function deletePdf(docId) {
-  if (!confirm("Are you sure you want to delete this PDF?")) return;
-
-  try {
-    await deleteDoc(doc(db, "pdfLogs", docId));
-    alert("✅ PDF deleted successfully!");
-    loadSavedPdfs();
-  } catch (error) {
-    console.error("❌ Error deleting PDF: ", error);
-  }
-}
-function addNewRow() {
-  const table = document
-    .getElementById("myTable")
-    .getElementsByTagName("tbody")[0];
-  const newRow = table.insertRow();
-  const rowCount = table.rows.length;
-
-  for (let i = 0; i < 10; i++) {
-    const cell = newRow.insertCell(i);
-    if (i === 0) {
-      cell.textContent = rowCount;
-    } else {
-      const input = document.createElement("input");
-      input.type = "text";
-      input.name = `column${i}`; // Adds a unique name
-      input.id = `row${rowCount}-col${i}`; // Adds a unique id
-      cell.appendChild(input);
+function updateSavedSection() {
+    const container = document.getElementById('savedPdfs');
+    if (localStorage.getItem('farmerTableData')) {
+        container.innerHTML = `
+            <button class="btn btn-outline-primary" onclick="loadFromLocalStorage()">Load Previous Saved Data</button>
+            <button class="btn btn-outline-danger ms-2" onclick="clearLocalStorage()">Clear Saved Data</button>
+        `;
     }
-  }
-}
-// 🔹 Function to Print Table as PDF (Same as Save)
-function printTable() {
-  const { jsPDF } = window.jspdf;
-  const pdfDoc = new jsPDF({ orientation: "landscape" }); // ✅ Set Landscape Mode
-
-  // 🔹 Load Logo Images (Ensure these files exist in your project)
-  const logoLeft = "logo1.png";
-  const logoRight = "trade-3.png";
-  let organizer = document.getElementById("organizer").value.trim();
-  const variety = document.getElementById("variety").value.trim();
-  if (organizer === "") {
-    organizer = "Details";
-  }
-  const pdfName = `${organizer}_${variety}`.replace(/\s+/g, "_");
-  // 🔹 Add Logos
-  pdfDoc.addImage(logoLeft, "PNG", 10, 10, 30, 30);
-  pdfDoc.addImage(logoRight, "PNG", 250, 7, 25, 35); // Adjust for landscape
-
-  // 🔹 Add Header
-  pdfDoc.setFontSize(25);
-  pdfDoc.setFont("helvetica", "bold");
-  pdfDoc.text("Star Agro Tech Pvt Ltd®", 148, 20, { align: "center" });
-  pdfDoc.setFontSize(18);
-  pdfDoc.text("Production Area Eluru, Season Rabi 2023-2024", 148, 28, {
-    align: "center",
-  });
-
-  // 🔹 Get Form Values (3x3 Layout)
-  pdfDoc.setFontSize(10);
-  pdfDoc.text(
-    `Organizer: ${document.getElementById("organizer").value}`,
-    40,
-    50
-  );
-  pdfDoc.text(`Village: ${document.getElementById("village").value}`, 120, 50);
-  pdfDoc.text(`Variety: ${document.getElementById("variety").value}`, 200, 50);
-
-  pdfDoc.text(
-    `Area Incharge: ${document.getElementById("areaIncharge").value}`,
-    40,
-    60
-  );
-  pdfDoc.text(
-    `District: ${document.getElementById("district").value}`,
-    120,
-    60
-  );
-  pdfDoc.text(`Mandal: ${document.getElementById("mandal").value}`, 200, 60);
-
-  // 🔹 Extract and Add Table Data
-  const tableData = extractTableData().map((row) => Object.values(row));
-  pdfDoc.autoTable({
-    head: [
-      [
-        "S.No",
-        "Farmer Name",
-        "F Date",
-        "M Date",
-        "Packets",
-        "Std Acres",
-        "Female KG",
-        "Male KG",
-        "Phone Number",
-        "Remark",
-      ],
-    ],
-    body: tableData,
-    startY: 70,
-    theme: "grid",
-    styles: { fontSize: 10, cellPadding: 2 },
-    headStyles: { fillColor: [0, 128, 0] },
-    columnStyles: {
-      0: { cellWidth: 15 },
-      1: { cellWidth: 35 },
-      8: { cellWidth: 30 },
-      9: { cellWidth: 40 },
-    }, // Adjust Column Widths
-  });
-
-  // 🔹 Print or Save PDF
-  pdfDoc.save(`${pdfName}.pdf`);
 }
 
-// Make functions accessible from HTML
-window.downloadPdf = downloadPdf;
-window.deletePdf = deletePdf;
-window.editTable = editTable;
+function clearLocalStorage() {
+    if (confirm("Are you sure you want to clear saved data?")) {
+        localStorage.removeItem('farmerTableData');
+        location.reload();
+    }
+}
+
+saveBtn.addEventListener('click', saveToLocalStorage);
+
+// ========== Initialize ==========
+window.onload = () => {
+    updateSavedSection();
+    loadFromLocalStorage();
+};
