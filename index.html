@@ -73,6 +73,23 @@
   </header>
 
   <main class="container form-section">
+    <!-- Dark Mode Toggle -->
+<div class="container d-flex justify-content-end my-4">
+  <button class="btn btn-outline-dark" id="toggleDarkMode">
+    <i class="bi bi-moon-stars"></i> Toggle Dark Mode
+  </button>
+</div>
+
+<!-- Toast Container -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+  <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMsg">Saved successfully!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
     <!-- Organizer Info -->
     <div class="card shadow-sm mb-4">
       <div class="card-body">
@@ -178,3 +195,4 @@
 </body>
 
 </html>
+
