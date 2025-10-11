@@ -5,94 +5,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farmer Details Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header class="site">
-        <div class="header-wrapper">
-            <div class="logo">
-                <a href="#" class="logo-link">
+    <header class="bg-light py-3 border-bottom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                <a href="#">
                     <img src="logo1.png" alt="Logo" style="width: 90px;">
                 </a>
             </div>
-            <div class="header-info">
-                <h1>
-                    <span style="color: crimson;">Star Agro tech Pvt Ltd®</span><br>
-                    Production Area Eluru, Season Rabi 2023- 2024
+            <div class="text-center">
+                <h1 class="h4">
+                    <span class="text-danger">Star Agro tech Pvt Ltd®</span><br>
+                    Production Area Eluru, Season Rabi 2023 - 2024
                 </h1>
-                <div class="organizer-info">
-                    <label>Organizer: <input type="text" id="organizer"></label><br>
-                    <label>Village: <input type="text" id="village"></label><br>
-                    <label>Variety: <input type="text" id="variety"></label><br>
+                <div class="row g-2 mt-2">
+                    <div class="col-md-4">
+                        <label class="form-label">Organizer</label>
+                        <input type="text" id="organizer" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Village</label>
+                        <input type="text" id="village" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Variety</label>
+                        <input type="text" id="variety" class="form-control">
+                    </div>
                 </div>
-                <div class="area-info">
-                    <label>Area Incharge: <input type="text" id="areaIncharge"></label><br>
-                    <label>District: <input type="text" id="district"></label><br>
-                    <label>Mandal: <input type="text" id="mandal"></label><br>
+                <div class="row g-2 mt-2">
+                    <div class="col-md-4">
+                        <label class="form-label">Area Incharge</label>
+                        <input type="text" id="areaIncharge" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">District</label>
+                        <input type="text" id="district" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Mandal</label>
+                        <input type="text" id="mandal" class="form-control">
+                    </div>
                 </div>
             </div>
-            <div class="logo">
-                <a href="#" class="logo-link">
+            <div>
+                <a href="#">
                     <img src="trade-3.png" alt="Logo" style="width: 70px;">
                 </a>
             </div>
         </div>
     </header>
 
-    <section>
-        <form>
-            <table id="myTable">
-                <thead>
-                    <tr>
-                        <th>S.No</th>
-                        <th>Farmer Name</th>
-                        <th>F.Date</th>
-                        <th>M.Date</th>
-                        <th>Packets</th>
-                        <th>Std Acres</th>
-                        <th>Female KG</th>
-                        <th>Male KG</th>
-                        <th>Phone Number</th>
-                        <th>Remark</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="SNO">1</td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                        <td><input type="text"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="input-items">
-                <input type="button" value="Save" id="saveData">
-                <input type="button" value="Print" id="print">
-                <input type="button" value="Add Row" id="addRow">
-            </div>
-        </form>
-    </section>
+    <main class="container my-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center align-middle" id="myTable">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Farmer Name</th>
+                                    <th>F.Date</th>
+                                    <th>M.Date</th>
+                                    <th>Packets</th>
+                                    <th>Std Acres</th>
+                                    <th>Female KG</th>
+                                    <th>Male KG</th>
+                                    <th>Phone Number</th>
+                                    <th>Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="SNO">1</td>
+                                    <td><input type="text" class="form-control"></td>
+                                    <td><input type="date" class="form-control"></td>
+                                    <td><input type="date" class="form-control"></td>
+                                    <td><input type="number" class="form-control"></td>
+                                    <td><input type="number" class="form-control"></td>
+                                    <td><input type="number" class="form-control"></td>
+                                    <td><input type="number" class="form-control"></td>
+                                    <td><input type="tel" class="form-control"></td>
+                                    <td><input type="text" class="form-control"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-    <footer>
-        <div>
-            <h3>
-                <marquee>This is a Computer Generated Sheet. Always Save!</marquee>
-            </h3>
+                    <div class="d-flex justify-content-center gap-3 mt-3">
+                        <button type="button" class="btn btn-success" id="saveData">Save</button>
+                        <button type="button" class="btn btn-primary" id="print">Print</button>
+                        <button type="button" class="btn btn-secondary" id="addRow">Add Row</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-3 mt-4">
+        <div class="container text-center">
+            <marquee>This is a Computer Generated Sheet. Always Save!</marquee>
         </div>
     </footer>
 
-    <div id="savedPdfs" style="margin: 20px; padding: 10px; border-top: 1px solid #ccc;"></div>
+    <div id="savedPdfs" class="container my-4 border-top pt-3"></div>
 
+    <!-- JS Libraries -->
     <script type="module" src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
