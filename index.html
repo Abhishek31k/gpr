@@ -4,205 +4,253 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Farmer Details Form</title>
+  <title>Farmer Details Form | Star Agro Tech</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
 
   <style>
+    /* Sticky table header */
     thead th {
       position: sticky;
       top: 0;
-      z-index: 2;
-      background-color: var(--bs-dark);
-      color: white;
+      background: #0d6efd;
+      color: #fff;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.15);
     }
 
-    @media print {
-      header,
-      .btn,
-      footer,
-      #toggleDarkMode,
-      #savedPdfs {
-        display: none !important;
-      }
+    /* Header styling */
+    header {
+      background-color: #f8f9fa;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+    }
 
-      body {
-        background-color: white;
-        color: black;
-      }
+    /* Footer styling */
+    footer {
+      background-color: #0d6efd;
+      color: #fff;
+    }
 
-      .table {
-        font-size: 12px;
+    /* Responsive input height for mobile */
+    input.form-control {
+      min-height: 38px;
+    }
+
+    /* Hover effect on action buttons */
+    .btn-action:hover {
+      filter: brightness(0.9);
+    }
+
+    /* Dark mode support */
+    body.dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    body.dark-mode header {
+      background-color: #1f1f1f;
+      box-shadow: none;
+    }
+
+    body.dark-mode footer {
+      background-color: #222;
+      color: #ccc;
+    }
+
+    body.dark-mode table thead th {
+      background-color: #1e88e5 !important;
+      color: #eee;
+    }
+
+    body.dark-mode table,
+    body.dark-mode .table-bordered {
+      border-color: #444;
+    }
+
+    body.dark-mode input.form-control {
+      background-color: #222;
+      border-color: #444;
+      color: #eee;
+    }
+
+    body.dark-mode .btn {
+      border-color: #1e88e5;
+      color: #1e88e5;
+    }
+
+    body.dark-mode .btn:hover {
+      background-color: #1e88e5;
+      color: #fff;
+    }
+
+    /* Marquee style */
+    marquee {
+      font-weight: 600;
+    }
+
+    /* Card shadow for main */
+    main .card {
+      border-radius: 0.75rem;
+      box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0.1);
+    }
+
+    /* Align action buttons in table */
+    .table td .btn {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    /* Search box bigger on small screens */
+    @media (max-width: 576px) {
+      #searchBox {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="bg-light py-3 border-bottom">
-    <div class="container d-flex justify-content-between align-items-center flex-wrap">
-      <div>
-        <a href="#">
-          <img src="logo1.png" alt="Logo" style="width: 90px" />
-        </a>
-      </div>
+  <header class="py-3 mb-4">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <a href="#" class="d-flex align-items-center mb-3 mb-md-0 text-dark text-decoration-none">
+        <img src="logo1.png" alt="Star Agro Tech Logo" style="height: 50px" />
+      </a>
+
       <div class="text-center flex-grow-1 px-3">
-        <h1 class="h4 mb-2">
-          <span class="text-danger">Star Agro tech Pvt Ltd®</span><br />
-          Production Area Eluru, Season Rabi 2023 - 2024
-        </h1>
-        <div class="row g-2">
-          <div class="col-md-4">
-            <label class="form-label">Organizer</label>
-            <input type="text" id="organizer" class="form-control" />
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Village</label>
-            <input type="text" id="village" class="form-control" />
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Variety</label>
-            <input type="text" id="variety" class="form-control" />
-          </div>
-          <div class="col-md-4 mt-2">
-            <label class="form-label">Area Incharge</label>
-            <input type="text" id="areaIncharge" class="form-control" />
-          </div>
-          <div class="col-md-4 mt-2">
-            <label class="form-label">District</label>
-            <input type="text" id="district" class="form-control" />
-          </div>
-          <div class="col-md-4 mt-2">
-            <label class="form-label">Mandal</label>
-            <input type="text" id="mandal" class="form-control" />
-          </div>
+        <h1 class="h3 fw-bold mb-1 text-primary">Star Agro Tech Pvt Ltd®</h1>
+        <p class="mb-0 fw-semibold">Production Area Eluru, Season Rabi 2023 - 2024</p>
+      </div>
+
+      <a href="#" class="mb-3 mb-md-0">
+        <img src="trade-3.png" alt="Trade Logo" style="height: 40px" />
+      </a>
+    </div>
+
+    <div class="container mt-3">
+      <form class="row g-3">
+        <div class="col-md-4">
+          <label for="organizer" class="form-label fw-semibold">Organizer</label>
+          <input type="text" id="organizer" class="form-control" placeholder="Enter organizer name" />
         </div>
-      </div>
-      <div>
-        <a href="#">
-          <img src="trade-3.png" alt="Logo" style="width: 70px" />
-        </a>
-      </div>
+        <div class="col-md-4">
+          <label for="village" class="form-label fw-semibold">Village</label>
+          <input type="text" id="village" class="form-control" placeholder="Enter village" />
+        </div>
+        <div class="col-md-4">
+          <label for="variety" class="form-label fw-semibold">Variety</label>
+          <input type="text" id="variety" class="form-control" placeholder="Enter variety" />
+        </div>
+        <div class="col-md-4">
+          <label for="areaIncharge" class="form-label fw-semibold">Area Incharge</label>
+          <input type="text" id="areaIncharge" class="form-control" placeholder="Enter area incharge" />
+        </div>
+        <div class="col-md-4">
+          <label for="district" class="form-label fw-semibold">District</label>
+          <input type="text" id="district" class="form-control" placeholder="Enter district" />
+        </div>
+        <div class="col-md-4">
+          <label for="mandal" class="form-label fw-semibold">Mandal</label>
+          <input type="text" id="mandal" class="form-control" placeholder="Enter mandal" />
+        </div>
+      </form>
     </div>
   </header>
 
-  <main class="container my-4">
-    <!-- Dark Mode Toggle -->
-    <div class="d-flex justify-content-end mb-3">
-      <button class="btn btn-outline-dark" id="toggleDarkMode">
-        <i class="bi bi-moon-stars"></i> Toggle Dark Mode
+  <main class="container mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+      <input type="text" class="form-control flex-grow-1" id="searchBox" placeholder="Search by Farmer Name or Phone…" style="max-width: 400px" />
+
+      <button class="btn btn-outline-primary" id="toggleDarkMode" title="Toggle dark mode">
+        <i class="bi bi-moon-stars"></i> Dark Mode
       </button>
     </div>
 
-    <!-- Search Box -->
-    <div class="mb-3">
-      <input type="text" class="form-control" id="searchBox" placeholder="Search by Farmer Name or Phone…" />
-    </div>
+    <div class="card p-3">
+      <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+        <table class="table table-bordered align-middle text-center mb-0" id="myTable" style="min-width: 900px;">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 50px;">S.No</th>
+              <th scope="col" style="min-width: 140px;">Farmer Name</th>
+              <th scope="col" style="width: 110px;">F. Date</th>
+              <th scope="col" style="width: 110px;">M. Date</th>
+              <th scope="col" style="width: 80px;">Packets</th>
+              <th scope="col" style="width: 90px;">Std Acres</th>
+              <th scope="col" style="width: 90px;">Female KG</th>
+              <th scope="col" style="width: 90px;">Male KG</th>
+              <th scope="col" style="min-width: 130px;">Phone Number</th>
+              <th scope="col" style="min-width: 120px;">Remark</th>
+              <th scope="col" style="width: 90px;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="SNO">1</td>
+              <td><input type="text" class="form-control" placeholder="Farmer Name" /></td>
+              <td><input type="date" class="form-control" /></td>
+              <td><input type="date" class="form-control" /></td>
+              <td><input type="number" class="form-control" min="0" /></td>
+              <td><input type="number" class="form-control" min="0" step="0.01" /></td>
+              <td><input type="number" class="form-control" min="0" step="0.01" /></td>
+              <td><input type="number" class="form-control" min="0" step="0.01" /></td>
+              <td><input type="tel" class="form-control" placeholder="Phone Number" /></td>
+              <td><input type="text" class="form-control" placeholder="Remarks" /></td>
+              <td>
+                <button type="button" class="btn btn-danger btn-sm btn-action" title="Delete Row">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <div class="card shadow-sm">
-      <div class="card-body p-2">
-        <form>
-          <div class="table-responsive">
-            <table class="table table-bordered text-center align-middle mb-0" id="myTable">
-              <thead class="table-dark">
-                <tr>
-                  <th>S.No</th>
-                  <th>Farmer Name</th>
-                  <th>F.Date</th>
-                  <th>M.Date</th>
-                  <th>Packets</th>
-                  <th>Std Acres</th>
-                  <th>Female KG</th>
-                  <th>Male KG</th>
-                  <th>Phone Number</th>
-                  <th>Remark</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="SNO">1</td>
-                  <td><input type="text" class="form-control" /></td>
-                  <td><input type="date" class="form-control" /></td>
-                  <td><input type="date" class="form-control" /></td>
-                  <td><input type="number" class="form-control" /></td>
-                  <td><input type="number" class="form-control" /></td>
-                  <td><input type="number" class="form-control" /></td>
-                  <td><input type="number" class="form-control" /></td>
-                  <td><input type="tel" class="form-control" /></td>
-                  <td><input type="text" class="form-control" /></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div
-            class="d-flex justify-content-center flex-wrap gap-3 mt-3"
-            style="gap: 1rem !important"
-          >
-            <button type="button" class="btn btn-success" id="saveData">
-              <i class="bi bi-save"></i> Save
-            </button>
-            <button type="button" class="btn btn-primary" id="print">
-              <i class="bi bi-printer"></i> Print
-            </button>
-            <button type="button" class="btn btn-secondary" id="addRow">
-              <i class="bi bi-plus-circle"></i> Add Row
-            </button>
-            <button type="button" class="btn btn-info" id="exportExcel">
-              <i class="bi bi-file-earmark-excel"></i> Export Excel
-            </button>
-          </div>
-        </form>
+      <div class="mt-4 d-flex flex-wrap gap-2 justify-content-center">
+        <button type="button" class="btn btn-success" id="saveData" title="Save data">
+          <i class="bi bi-save"></i> Save
+        </button>
+        <button type="button" class="btn btn-primary" id="print" title="Print table">
+          <i class="bi bi-printer"></i> Print
+        </button>
+        <button type="button" class="btn btn-secondary" id="addRow" title="Add a new row">
+          <i class="bi bi-plus-circle"></i> Add Row
+        </button>
+        <button type="button" class="btn btn-info" id="exportExcel" title="Export to Excel">
+          <i class="bi bi-file-earmark-excel"></i> Export Excel
+        </button>
       </div>
     </div>
   </main>
 
-  <footer class="bg-dark text-white py-3 mt-4">
-    <div class="container text-center">
-      <marquee>This is a Computer Generated Sheet. Always Save!</marquee>
-    </div>
+  <footer class="py-3 text-center">
+    <marquee behavior="scroll" direction="left" scrollamount="5" style="font-weight: 600; color: #fff;">
+      This is a Computer Generated Sheet. Always Save!
+    </marquee>
   </footer>
 
-  <div id="savedPdfs" class="container my-4 border-top pt-3"></div>
-
-  <!-- Toast Container -->
-  <div
-    class="position-fixed bottom-0 end-0 p-3"
-    style="z-index: 9999"
-  >
-    <div
-      id="liveToast"
-      class="toast align-items-center text-white bg-success border-0"
-      role="alert"
-      aria-live="assertive"
-      aria-atomic="true"
-    >
-      <div class="d-flex">
-        <div class="toast-body" id="toastMsg">Saved successfully!</div>
-        <button
-          type="button"
-          class="btn-close btn-close-white me-2 m-auto"
-          data-bs-dismiss="toast"
-          aria-label="Close"
-        ></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- External Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <!-- Bootstrap Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
 
   <!-- Your custom script -->
   <script type="module" src="script.js"></script>
+
+  <script>
+    // Dark mode toggle simple example
+    const toggleBtn = document.getElementById('toggleDarkMode');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        toggleBtn.innerHTML = '<i class="bi bi-sun-fill"></i> Light Mode';
+      } else {
+        toggleBtn.innerHTML = '<i class="bi bi-moon-stars"></i> Dark Mode';
+      }
+    });
+  </script>
 </body>
 
 </html>
